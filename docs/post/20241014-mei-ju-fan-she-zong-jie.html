@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/80440497?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="### 一、反射基本概念
+反射是一种可以在运行时动态地检查类型（类、枚举、结构等）信息的技术，甚至可以访问类成员（方法、属性、字段）和自定义的特性。">
+<meta property="og:title" content="20241014枚举反射总结">
+<meta property="og:description" content="### 一、反射基本概念
+反射是一种可以在运行时动态地检查类型（类、枚举、结构等）信息的技术，甚至可以访问类成员（方法、属性、字段）和自定义的特性。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20241014-mei-ju-fan-she-zong-jie.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/80440497?v=4">
+<title>20241014枚举反射总结</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">20241014枚举反射总结</h1>
+<div class="title-right">
+    <a href="https://ZMJunwakaka.github.io/ZMJun" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/ZMJunwakaka/ZMJun/issues/8" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h3>一、反射基本概念</h3>
+<p>反射是一种可以在运行时动态地检查类型（类、枚举、结构等）信息的技术，甚至可以访问类成员（方法、属性、字段）和自定义的特性。<br>
+在这段代码中，反射的目的是从枚举成员 VoiceNo 中获取 LedContentAttribute 特性，并返回其中的 LedContent 字段值。</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">.</span>Reflection<span class="pl-kos">;</span>
+
+<span class="pl-k">namespace</span> <span class="pl-v">ConsoleAppTest1012</span>
+<span class="pl-kos">{</span>
+    <span class="pl-k">internal</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">args</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-smi">VoiceNo</span> <span class="pl-s1">voiceNo</span> <span class="pl-c1">=</span> Convert2VoiceNo<span class="pl-kos">(</span><span class="pl-kos">(</span>ParkingVehicleInExCodeEnum<span class="pl-kos">)</span><span class="pl-c1">0</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>voiceNo<span class="pl-kos">)</span><span class="pl-kos">;</span>       <span class="pl-c">//请前往指定车位</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-smi">int</span><span class="pl-kos">)</span>voiceNo<span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">//101</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>voiceNo<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">//请前往指定车位</span>
+
+            <span class="pl-c">// 反射</span>
+            <span class="pl-c">// 获取枚举成员的字段信息</span>
+            <span class="pl-c">// voiceNo.GetType()：获取 voiceNo 的类型信息，即 VoiceNo 枚举的类型。</span>
+            <span class="pl-c">// GetField(voiceNo.ToString())：根据枚举值转换为字符串名称，获取该枚举成员的字段信息。此时，fieldInfo 代表枚举成员的元数据信息。</span>
+            <span class="pl-smi">FieldInfo</span> <span class="pl-s1">fieldInfo</span> <span class="pl-c1">=</span> voiceNo<span class="pl-kos">.</span><span class="pl-en">GetType</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">GetField</span><span class="pl-kos">(</span>voiceNo<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+            <span class="pl-c">// 获取自定义特性</span>
+            <span class="pl-c">// 使用反射获取 fieldInfo（即对应的枚举值字段）上应用的 LedContentAttribute 特性。</span>
+            <span class="pl-smi">LedContentAttribute</span> <span class="pl-s1">attribute</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span>LedContentAttribute<span class="pl-kos">)</span>Attribute<span class="pl-kos">.</span><span class="pl-en">GetCustomAttribute</span><span class="pl-kos">(</span>fieldInfo<span class="pl-kos">,</span> <span class="pl-k">typeof</span><span class="pl-kos">(</span><span class="pl-smi">LedContentAttribute</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>fieldInfo<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>   <span class="pl-c">// ConsoleAppTest1012.VoiceNo 请前往指定车位</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>attribute<span class="pl-c1">?</span><span class="pl-kos">.</span>ToString<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">// ConsoleAppTest1012.LedContentAttribute</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>attribute<span class="pl-c1">?</span><span class="pl-kos">.</span>LedContent<span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">// {0}@请前往{1}</span>
+
+            <span class="pl-smi">var</span> <span class="pl-s1">content</span> <span class="pl-c1">=</span> <span class="pl-smi">string</span><span class="pl-kos">.</span><span class="pl-en">Format</span><span class="pl-kos">(</span>attribute<span class="pl-c1">?</span><span class="pl-kos">.</span>LedContent<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>鲁B66666<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>7区1号<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>content<span class="pl-kos">)</span><span class="pl-kos">;</span>                <span class="pl-c">// 鲁B66666@请前往7区1号</span>
+
+        <span class="pl-kos">}</span>
+
+        <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> VoiceNo <span class="pl-en">Convert2VoiceNo</span><span class="pl-kos">(</span><span class="pl-smi">ParkingVehicleInExCodeEnum</span> <span class="pl-s1">exCode</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-k">switch</span> <span class="pl-kos">(</span><span class="pl-s1">exCode</span><span class="pl-kos">)</span>
+            <span class="pl-kos">{</span>
+                <span class="pl-k">case</span> ParkingVehicleInExCodeEnum<span class="pl-kos">.</span>正常<span class="pl-c1">:</span>
+                    <span class="pl-k">return</span> <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span>请前往指定车位<span class="pl-kos">;</span>
+     
+                <span class="pl-k">default</span><span class="pl-c1">:</span>
+                    <span class="pl-k">return</span> <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span>无权限<span class="pl-kos">;</span>
+            <span class="pl-kos">}</span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span>
+    <span class="pl-k">public</span> <span class="pl-k">enum</span> <span class="pl-smi">ParkingVehicleInExCodeEnum</span>
+    <span class="pl-kos">{</span>
+        正常 <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+
+        未知错误 <span class="pl-c1">=</span> <span class="pl-c1">255</span><span class="pl-kos">,</span>
+    <span class="pl-kos">}</span>
+
+    <span class="pl-k">public</span> <span class="pl-k">enum</span> <span class="pl-smi">VoiceNo</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-kos">[</span><span class="pl-c1">LedContent<span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>{0}@请前往{1}<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">]</span>
+        请前往指定车位 <span class="pl-c1">=</span> <span class="pl-c1">101</span><span class="pl-kos">,</span>
+
+        <span class="pl-kos">[</span><span class="pl-c1">LedContent<span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>{0}@无权限<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">]</span>
+        无权限 <span class="pl-c1">=</span> <span class="pl-c1">200</span><span class="pl-kos">,</span>
+    <span class="pl-kos">}</span>
+
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">LedContentAttribute</span> <span class="pl-c1">:</span> <span class="pl-smi">Attribute</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-k">public</span> <span class="pl-smi">string</span> <span class="pl-s1">LedContent</span> <span class="pl-kos">{</span> <span class="pl-k">get</span><span class="pl-kos">;</span> <span class="pl-kos">}</span>
+
+        <span class="pl-k">public</span> <span class="pl-v">LedContentAttribute</span><span class="pl-kos">(</span><span class="pl-smi">string</span> <span class="pl-s1">ledContent</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-s1">LedContent</span> <span class="pl-c1">=</span> <span class="pl-s1">ledContent</span><span class="pl-kos">;</span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<p>其中这两条语句都具体使用了<strong>反射</strong>。我们可以逐步剖析它们的反射使用。</p>
+<h3>1. <strong><code class="notranslate">voiceNo.GetType().GetField(voiceNo.ToString())</code></strong></h3>
+<p>这句代码用到了反射。它的操作过程如下：</p>
+<ul>
+<li><strong><code class="notranslate">voiceNo.GetType()</code></strong>：这是反射的第一步，通过 <code class="notranslate">GetType()</code> 方法获取 <code class="notranslate">voiceNo</code> 对象的类型信息。<code class="notranslate">voiceNo</code> 是一个枚举类型 <code class="notranslate">VoiceNo</code>，所以它返回的是 <code class="notranslate">VoiceNo</code> 这个枚举的 <code class="notranslate">Type</code> 信息。</li>
+<li><strong><code class="notranslate">voiceNo.ToString()</code></strong>：这是将枚举值转换为它对应的字符串名称，比如 <code class="notranslate">VoiceNo.请前往指定车位</code> 将会被转换为 <code class="notranslate">"请前往指定车位"</code>。</li>
+<li><strong><code class="notranslate">GetField()</code></strong>：使用反射来获取 <code class="notranslate">VoiceNo</code> 枚举中，名称为 <code class="notranslate">请前往指定车位</code> 的字段信息（<code class="notranslate">FieldInfo</code> 对象）。<code class="notranslate">GetField()</code> 是反射的一部分，它允许你在运行时获取类、结构或枚举中的字段信息。</li>
+</ul>
+<p><strong>结论</strong>：这句代码通过 <code class="notranslate">GetType()</code> 和 <code class="notranslate">GetField()</code> 方法，使用了反射来动态获取 <code class="notranslate">voiceNo</code> 枚举的元数据。</p>
+<h3>2. <strong><code class="notranslate">(LedContentAttribute)Attribute.GetCustomAttribute(fieldInfo, typeof(LedContentAttribute))</code></strong></h3>
+<p>这句代码也用到了反射。具体如下：</p>
+<ul>
+<li>
+<p><strong><code class="notranslate">Attribute.GetCustomAttribute(fieldInfo, typeof(LedContentAttribute))</code></strong>：这是一个典型的反射调用，它的作用是在运行时获取 <code class="notranslate">fieldInfo</code>（即枚举成员）上应用的自定义特性 <code class="notranslate">LedContentAttribute</code>。</p>
+<ul>
+<li><code class="notranslate">fieldInfo</code> 是通过前面的反射方法获取到的枚举成员的字段信息。</li>
+<li><code class="notranslate">typeof(LedContentAttribute)</code>：表示你要查找的特性类型，即 <code class="notranslate">LedContentAttribute</code>。</li>
+<li>这行代码会在枚举字段 <code class="notranslate">fieldInfo</code> 上查找是否有标记 <code class="notranslate">LedContentAttribute</code> 特性，并返回这个特性实例。</li>
+</ul>
+</li>
+<li>
+<p><strong>强制类型转换</strong>：将返回的特性对象强制转换为 <code class="notranslate">LedContentAttribute</code> 类型，以便访问其 <code class="notranslate">LedContent</code> 属性。</p>
+</li>
+</ul>
+<p><strong>结论</strong>：这句代码使用了反射方法 <code class="notranslate">GetCustomAttribute()</code> 来获取枚举字段上的自定义特性，动态查找并访问属性信息。</p>
+<h3>总结</h3>
+<p>在这段代码中，以下两部分使用了反射：</p>
+<ol>
+<li><strong><code class="notranslate">voiceNo.GetType().GetField(voiceNo.ToString())</code></strong>：使用反射获取枚举值对应的字段信息 (<code class="notranslate">FieldInfo</code>)。</li>
+<li><strong><code class="notranslate">Attribute.GetCustomAttribute(fieldInfo, typeof(LedContentAttribute))</code></strong>：使用反射从字段信息中获取自定义特性 <code class="notranslate">LedContentAttribute</code>。</li>
+</ol>
+<p>反射允许在运行时动态获取类型信息和特性，而不是在编译时就确定好。这也是反射的核心用途。</p>
+<hr>
+<h3>二、使用反射VS不使用反射</h3>
+<p>不使用反射，改为通过另一个枚举和转换方法来实现从 <code class="notranslate">VoiceNo</code> 到 <code class="notranslate">LedContent</code> 的映射，也是可以实现的。你可以为 <code class="notranslate">VoiceNo</code> 枚举的每个成员定义一个对应的字符串，然后在方法中手动进行映射。接下来我会详细解释这种方法的实现，并比较两种方法的优缺点。</p>
+<h3>1. <strong>不用反射的实现方法</strong></h3>
+<h4>1.1 创建一个新枚举或类进行映射</h4>
+<p>你可以通过手动创建一个映射枚举或字典来替代反射，例如：</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-k">class</span> <span class="pl-smi">VoiceNoLedContentMap</span>
+<span class="pl-kos">{</span>
+    <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">string</span> <span class="pl-en">GetLedContent</span><span class="pl-kos">(</span><span class="pl-smi">VoiceNo</span> <span class="pl-s1">voiceNo</span><span class="pl-kos">)</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-k">return</span> <span class="pl-s1">voiceNo</span> <span class="pl-k">switch</span>
+        <span class="pl-kos">{</span>
+            VoiceNo<span class="pl-kos">.</span>欢迎光临 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@欢迎光临@请勿跟车<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            VoiceNo<span class="pl-kos">.</span>请前往指定车位 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@请前往{1}<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            VoiceNo<span class="pl-kos">.</span>无权限 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@无权限<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            VoiceNo<span class="pl-kos">.</span>非启用时段 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@当前时间不可通行，请前往另一个入口<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            VoiceNo<span class="pl-kos">.</span>非白名单 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@无权限@本场站为专用场站<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            VoiceNo<span class="pl-kos">.</span>无空闲堆垛车位 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@对不起@车位已满<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            VoiceNo<span class="pl-kos">.</span>无空闲缓冲车位 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@对不起@当前无空闲缓冲车位，请稍后<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            _ <span class="pl-c1">=&gt;</span> <span class="pl-c1">null</span>
+        <span class="pl-kos">}</span><span class="pl-kos">;</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<h4>1.2 使用示例</h4>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">string</span> <span class="pl-s1">content</span> <span class="pl-c1">=</span> VoiceNoLedContentMap<span class="pl-kos">.</span><span class="pl-en">GetLedContent</span><span class="pl-kos">(</span>VoiceNo<span class="pl-kos">.</span>请前往指定车位<span class="pl-kos">)</span><span class="pl-kos">;</span>
+Console<span class="pl-kos">.</span>WriteLine<span class="pl-kos">(</span>content<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: {0}@请前往{1}</span></pre></div>
+<h3>2. <strong>两种方法的比较</strong></h3>
+<h4>2.1 <strong>反射方法</strong></h4>
+<p>优点：</p>
+<ul>
+<li><strong>自动化</strong>：通过反射，枚举和特性可以直接关联，避免手动维护映射表。你只需要在枚举中添加特性即可，减少了代码重复。</li>
+<li><strong>可扩展性强</strong>：反射的方式允许在未来方便地对枚举进行扩展，而不需要修改现有的代码。例如，添加新枚举值时，只需要给新枚举值添加 <code class="notranslate">LedContentAttribute</code> 特性即可，无需更改映射逻辑。</li>
+<li><strong>简洁</strong>：代码相对简洁，不需要手动写一个枚举和映射方法。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>性能开销</strong>：反射在运行时会有一些性能开销，特别是在大型应用中频繁使用时，这可能导致性能问题。</li>
+<li><strong>类型安全较弱</strong>：反射依赖运行时元数据，编译时不会捕获可能的错误。例如，特性中如果忘记填写 <code class="notranslate">LedContent</code>，编译时不会有提示。</li>
+</ul>
+<h4>2.2 <strong>手动映射方法</strong></h4>
+<p>优点：</p>
+<ul>
+<li><strong>性能更高</strong>：由于不依赖反射，性能更高，特别是在大量调用时，避免了反射带来的开销。</li>
+<li><strong>明确的类型检查</strong>：编译时可以检查 <code class="notranslate">switch</code> 语句的完整性，比如如果 <code class="notranslate">switch</code> 中没有覆盖某些枚举值，编译器会发出警告。</li>
+<li><strong>简单调试</strong>：调试时更直观，因为映射逻辑是显式的、手写的，而不是隐式通过反射获取的。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>维护成本较高</strong>：每次添加新的枚举值，都需要同时手动更新映射方法，可能会导致忘记更新的问题。维护两处（枚举和映射）容易出错。</li>
+<li><strong>代码重复</strong>：如果枚举项较多，手动映射的代码会比较冗长，增加了代码重复的风险。</li>
+</ul>
+<h3>3. <strong>推荐的实现方式</strong></h3>
+<ul>
+<li>
+<p><strong>反射方法</strong> 推荐用于<strong>中小型项目</strong>或者<strong>枚举扩展频繁</strong>的场景。在这种场景下，代码的可维护性和简洁性优先于性能。通过反射的方式，只需维护一个枚举，添加新特性后无需修改其他代码，更易于扩展。</p>
+</li>
+<li>
+<p><strong>手动映射方法</strong> 则适合<strong>性能要求较高的项目</strong>或者<strong>枚举项比较稳定</strong>的场景。如果枚举项变化不频繁，且需要优化性能，那么手动映射是更好的选择，因为它避免了反射带来的性能开销。</p>
+</li>
+</ul>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>如果你追求<strong>代码简洁</strong>和<strong>易于扩展</strong>，可以选择反射方式。</li>
+<li>如果你对性能有更高的要求，并且可以接受较高的维护成本，那么手动映射方式更合适。</li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://ZMJunwakaka.github.io/ZMJun">鄭明君のBlog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","ZMJunwakaka/ZMJun");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
