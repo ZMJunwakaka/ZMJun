@@ -15,58 +15,24 @@
 ### 首先熟悉缓冲车位状态上报，任务完成，请求任务，执行存车取车，（消防不用管，挪车先不考虑）
 ### 查看PMS对应代码
 
-ParkingVehicleInBusiness（入口开闸申请处理业务）请求驶入，创建订单
+### 一、道闸上行
+1. ParkingVehicleInBusiness（入口开闸申请处理业务）请求驶入，创建订单
 
-RoadGateUploadPhotoBusiness（道闸照片上传处理业务）
+2. RoadGateUploadPhotoBusiness（道闸照片上传处理业务）
 
-ParkingVehicleInResultBusiness（车辆驶入结果事件处理业务）驶入结果，判断订单是否正确
-
-ParkingStateChangedBusiness 存车取车处理订单流程、无车-有车、新建-已驶入缓冲车位、对中条件检查：下发对中（没有下发对中查看该日志）
-
-ASVParkingTaskExecBusiness 存车（该日志看是否已存车）
-
-
-ASVTaskCompleteBusiness 任务完成失败事件（姿态对中后，存车code，取车）
-
-ASVTaskRequestContext 设备请求任务
-
-
-PickupVehicleRequestBusiness 用户申请取车，排队 ，排队后下发设备请求任务
-
-ASVPickupTaskExecBusiness 执行取车任务  状态扭转为待取车
-
-ParkingStateChangedBusiness 取车流程中，扭转成已取车
-
-ParkingVehicleOutResultBusiness 驶出结果，订单完成或取消，不需要鉴权。">
+> 上传两条消息（'Param'的'PhotoType'分别为1和2）分别与1和3相对应，上传照片url，与1、3分别配合进行从redis中获取'RoadGateEventMsg'到上下文中并进行全链路数据记录。">
 <meta property="og:title" content="20241010停车取车状态流程学习">
 <meta property="og:description" content="![image](https://github.com/user-attachments/assets/3db583d9-0593-4e09-b0c0-7325968a2785)
 
 ### 首先熟悉缓冲车位状态上报，任务完成，请求任务，执行存车取车，（消防不用管，挪车先不考虑）
 ### 查看PMS对应代码
 
-ParkingVehicleInBusiness（入口开闸申请处理业务）请求驶入，创建订单
+### 一、道闸上行
+1. ParkingVehicleInBusiness（入口开闸申请处理业务）请求驶入，创建订单
 
-RoadGateUploadPhotoBusiness（道闸照片上传处理业务）
+2. RoadGateUploadPhotoBusiness（道闸照片上传处理业务）
 
-ParkingVehicleInResultBusiness（车辆驶入结果事件处理业务）驶入结果，判断订单是否正确
-
-ParkingStateChangedBusiness 存车取车处理订单流程、无车-有车、新建-已驶入缓冲车位、对中条件检查：下发对中（没有下发对中查看该日志）
-
-ASVParkingTaskExecBusiness 存车（该日志看是否已存车）
-
-
-ASVTaskCompleteBusiness 任务完成失败事件（姿态对中后，存车code，取车）
-
-ASVTaskRequestContext 设备请求任务
-
-
-PickupVehicleRequestBusiness 用户申请取车，排队 ，排队后下发设备请求任务
-
-ASVPickupTaskExecBusiness 执行取车任务  状态扭转为待取车
-
-ParkingStateChangedBusiness 取车流程中，扭转成已取车
-
-ParkingVehicleOutResultBusiness 驶出结果，订单完成或取消，不需要鉴权。">
+> 上传两条消息（'Param'的'PhotoType'分别为1和2）分别与1和3相对应，上传照片url，与1、3分别配合进行从redis中获取'RoadGateEventMsg'到上下文中并进行全链路数据记录。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20241010-ting-che-qu-che-zhuang-tai-liu-cheng-xue-xi.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/80440497?v=4">
@@ -130,9 +96,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/3db583d9-0593-4e09-b0c0-7325968a2785"><img src="https://github.com/user-attachments/assets/3db583d9-0593-4e09-b0c0-7325968a2785" alt="image" style="max-width: 100%;"></a></p>
 <h3>首先熟悉缓冲车位状态上报，任务完成，请求任务，执行存车取车，（消防不用管，挪车先不考虑）</h3>
 <h3>查看PMS对应代码</h3>
+<h3>一、道闸上行</h3>
+<ol>
+<li>
 <p>ParkingVehicleInBusiness（入口开闸申请处理业务）请求驶入，创建订单</p>
+</li>
+<li>
 <p>RoadGateUploadPhotoBusiness（道闸照片上传处理业务）</p>
-<p>ParkingVehicleInResultBusiness（车辆驶入结果事件处理业务）驶入结果，判断订单是否正确</p>
+</li>
+</ol>
+<blockquote>
+<p>上传两条消息（"Param"的"PhotoType"分别为1和2）分别与1和3相对应，上传照片url，与1、3分别配合进行从redis中获取"RoadGateEventMsg"到上下文中并进行全链路数据记录。</p>
+</blockquote>
+<ol start="3">
+<li>ParkingVehicleInResultBusiness（车辆驶入结果事件处理业务）驶入结果，判断订单是否正确</li>
+</ol>
+<h3>二、缓冲车位状态变化</h3>
 <p>ParkingStateChangedBusiness 存车取车处理订单流程、无车-有车、新建-已驶入缓冲车位、对中条件检查：下发对中（没有下发对中查看该日志）</p>
 <p>ASVParkingTaskExecBusiness 存车（该日志看是否已存车）</p>
 <p>ASVTaskCompleteBusiness 任务完成失败事件（姿态对中后，存车code，取车）</p>
