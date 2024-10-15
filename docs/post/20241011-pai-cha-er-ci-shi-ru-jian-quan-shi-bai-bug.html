@@ -14,13 +14,15 @@
 ![image](https://github.com/user-attachments/assets/734dd806-f308-429b-ae5c-52fe0be5af3a)
 ### 2.根据订单编号查询状态流转上下文信息
 ![image](https://github.com/user-attachments/assets/e31b5547-8962-4949-b71c-73cd9f78451c)
-### 3.根据上下文信息通过代码排查PMS模块中代码bug。">
+### 3.根据上下文信息通过代码排查PMS模块中代码bug
+### 注意：要排查道闸驶入的时候不能只按照订单编号查，因为有可能还没有创建订单导致上下文中不包含订单编号。">
 <meta property="og:title" content="20241011排查二次驶入鉴权失败bug">
 <meta property="og:description" content="### 1.根据车牌号找到订单编号
 ![image](https://github.com/user-attachments/assets/734dd806-f308-429b-ae5c-52fe0be5af3a)
 ### 2.根据订单编号查询状态流转上下文信息
 ![image](https://github.com/user-attachments/assets/e31b5547-8962-4949-b71c-73cd9f78451c)
-### 3.根据上下文信息通过代码排查PMS模块中代码bug。">
+### 3.根据上下文信息通过代码排查PMS模块中代码bug
+### 注意：要排查道闸驶入的时候不能只按照订单编号查，因为有可能还没有创建订单导致上下文中不包含订单编号。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20241011-pai-cha-er-ci-shi-ru-jian-quan-shi-bai-bug.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/80440497?v=4">
@@ -85,7 +87,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/734dd806-f308-429b-ae5c-52fe0be5af3a"><img src="https://github.com/user-attachments/assets/734dd806-f308-429b-ae5c-52fe0be5af3a" alt="image" style="max-width: 100%;"></a></p>
 <h3>2.根据订单编号查询状态流转上下文信息</h3>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e31b5547-8962-4949-b71c-73cd9f78451c"><img src="https://github.com/user-attachments/assets/e31b5547-8962-4949-b71c-73cd9f78451c" alt="image" style="max-width: 100%;"></a></p>
-<h3>3.根据上下文信息通过代码排查PMS模块中代码bug</h3></div>
+<h3>3.根据上下文信息通过代码排查PMS模块中代码bug</h3>
+<h3>注意：要排查道闸驶入的时候不能只按照订单编号查，因为有可能还没有创建订单导致上下文中不包含订单编号。</h3>
+<h3>解决办法</h3>
+<h3>1.先按照订单编号查</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/70e0e47f-2f74-4676-83ab-0ea86aa3ca95"><img src="https://github.com/user-attachments/assets/70e0e47f-2f74-4676-83ab-0ea86aa3ca95" alt="image" style="max-width: 100%;"></a></p>
+<h3>2.查出来有一个MsgID，再按照MsgID查即可</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b26cbf37-a1c3-461f-8aaf-828095ca519e"><img src="https://github.com/user-attachments/assets/b26cbf37-a1c3-461f-8aaf-828095ca519e" alt="image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
