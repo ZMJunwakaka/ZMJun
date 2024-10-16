@@ -33,6 +33,7 @@ push/command/roadgate/BarrierGate001
 
 <img width='1274' alt='1729041308913_A47F485A-9DC5-41d3-A6DF-60EDD29968D3' src='https://github.com/user-attachments/assets/883324a5-a0a9-46ea-92e6-dda9d0fbeaca'>
 返回
+
 ```C#
 'ErrorCode':'2',
 'ErrorMessage':'可用区域或堆垛车位为空'
@@ -62,6 +63,7 @@ push/command/roadgate/BarrierGate001
 
 <img width='1274' alt='1729041308913_A47F485A-9DC5-41d3-A6DF-60EDD29968D3' src='https://github.com/user-attachments/assets/883324a5-a0a9-46ea-92e6-dda9d0fbeaca'>
 返回
+
 ```C#
 'ErrorCode':'2',
 'ErrorMessage':'可用区域或堆垛车位为空'
@@ -154,11 +156,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 按照拓展字段6查询拓展字段19中的ErrorCode（代码中记录到了拓展字段19中）发现所有车位都被禁用时返回信息如下：</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/883324a5-a0a9-46ea-92e6-dda9d0fbeaca"><img width="1274" alt="1729041308913_A47F485A-9DC5-41d3-A6DF-60EDD29968D3" src="https://github.com/user-attachments/assets/883324a5-a0a9-46ea-92e6-dda9d0fbeaca" style="max-width: 100%;"></a></p>
 返回
-```C#
-"ErrorCode":"2",
-"ErrorMessage":"可用区域或堆垛车位为空"
-```
-检查代码中发现没有判断errCode == “2”的场景，加上代码即可。</div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-s"><span class="pl-s">"</span>ErrorCode<span class="pl-s">"</span></span><span class="pl-c1">:</span><span class="pl-s"><span class="pl-s">"</span>2<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+<span class="pl-s"><span class="pl-s">"</span>ErrorMessage<span class="pl-s">"</span></span><span class="pl-c1">:</span><span class="pl-s"><span class="pl-s">"</span>可用区域或堆垛车位为空<span class="pl-s">"</span></span></pre></div>
+<p>检查代码中发现没有判断errCode == “2”的场景，加上代码即可。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
