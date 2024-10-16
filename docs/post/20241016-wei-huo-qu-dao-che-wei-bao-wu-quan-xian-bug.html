@@ -26,6 +26,7 @@ push/command/roadgate/BarrierGate001
 ```C#
 'ContinuingProcess': false,
 'ContinuingRefusedDetail': '未获取到车位',
+'CheckCode': 3
 ```
 ### 5.在获取PAS堆垛车位中发现问题：
 没有返回相应的errCode，
@@ -56,6 +57,7 @@ push/command/roadgate/BarrierGate001
 ```C#
 'ContinuingProcess': false,
 'ContinuingRefusedDetail': '未获取到车位',
+'CheckCode': 3
 ```
 ### 5.在获取PAS堆垛车位中发现问题：
 没有返回相应的errCode，
@@ -150,7 +152,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/649736a9-138e-4ea0-aadd-548b442b44b6"><img src="https://github.com/user-attachments/assets/649736a9-138e-4ea0-aadd-548b442b44b6" alt="image" style="max-width: 100%;"></a></p>
 <h3>4.去ParkingVehicleInBusiness代码中查找哪一步更改了上下文：</h3>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-s"><span class="pl-s">"</span>ContinuingProcess<span class="pl-s">"</span></span><span class="pl-c1">:</span> false<span class="pl-kos">,</span>
-<span class="pl-s"><span class="pl-s">"</span>ContinuingRefusedDetail<span class="pl-s">"</span></span><span class="pl-c1">:</span> <span class="pl-s"><span class="pl-s">"</span>未获取到车位<span class="pl-s">"</span></span><span class="pl-kos">,</span></pre></div>
+<span class="pl-s"><span class="pl-s">"</span>ContinuingRefusedDetail<span class="pl-s">"</span></span><span class="pl-c1">:</span> <span class="pl-s"><span class="pl-s">"</span>未获取到车位<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+<span class="pl-s"><span class="pl-s">"</span>CheckCode<span class="pl-s">"</span></span><span class="pl-c1">:</span> <span class="pl-c1">3</span></pre></div>
 <h3>5.在获取PAS堆垛车位中发现问题：</h3>
 <p>没有返回相应的errCode，<br>
 按照拓展字段6查询拓展字段19中的ErrorCode（代码中记录到了拓展字段19中）发现所有车位都被禁用时返回信息如下：</p>
