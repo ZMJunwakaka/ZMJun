@@ -315,32 +315,43 @@ Func 是一个内置的委托类型，表示一个返回值的方法。<br>
 </blockquote>
 <ol>
 <li>基本使用<br>
-示例：简单的加法运算</li>
+示例</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
-
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">namespace</span> <span class="pl-v">ConsoleApp_20241027Delegate</span>
 <span class="pl-kos">{</span>
-    <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+    <span class="pl-k">internal</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">int</span><span class="pl-kos">,</span> <span class="pl-smi">int</span><span class="pl-kos">,</span> <span class="pl-smi">int</span><span class="pl-c1">&gt;</span> <span class="pl-s1">add</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-s1">y</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-s1">y</span></span><span class="pl-kos">;</span> <span class="pl-c">// 定义 Func</span>
-        <span class="pl-smi">int</span> <span class="pl-s1">result</span> <span class="pl-c1">=</span> add<span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用 Func</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">$"</span><span class="pl-s">Result of addition: </span><span class="pl-kos">{</span>result<span class="pl-kos">}</span><span class="pl-s">"</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出 Result of addition: 8</span>
-    <span class="pl-kos">}</span>
-<span class="pl-kos">}</span></pre></div>
-<ol start="2">
-<li>返回随机数<br>
-示例：生成随机数的 Func</li>
-</ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+        <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">args</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-smi">Program</span> <span class="pl-s1">program</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> Program<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span><span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
+            
+            AddStr<span class="pl-kos">(</span>fuc<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>World<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc1</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc2</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span><span class="pl-s"><span class="pl-s">"</span> <span class="pl-s">"</span></span><span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc3</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span><span class="pl-s"><span class="pl-s">"</span>,<span class="pl-s">"</span></span><span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
+            <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">funcs</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            funcs<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>fuc1<span class="pl-kos">)</span><span class="pl-kos">;</span>
+            funcs<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>fuc2<span class="pl-kos">)</span><span class="pl-kos">;</span>
+            funcs<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>fuc3<span class="pl-kos">)</span><span class="pl-kos">;</span>
+            Process<span class="pl-kos">(</span>funcs<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>hello<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>world<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
-<span class="pl-kos">{</span>
-    <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
-    <span class="pl-kos">{</span>
-        <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">int</span><span class="pl-c1">&gt;</span> <span class="pl-s1">getRandomNumber</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-k">new</span> Random<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">Next</span><span class="pl-kos">(</span><span class="pl-c1">1</span><span class="pl-kos">,</span> <span class="pl-c1">101</span><span class="pl-kos">)</span></span><span class="pl-kos">;</span> <span class="pl-c">// 生成1到100之间的随机数</span>
-        <span class="pl-smi">int</span> <span class="pl-s1">randomNumber</span> <span class="pl-c1">=</span> getRandomNumber<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用 Func</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">$"</span><span class="pl-s">Random Number: </span><span class="pl-kos">{</span>randomNumber<span class="pl-kos">}</span><span class="pl-s">"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-kos">}</span>
+
+        <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">AddStr</span><span class="pl-kos">(</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span><span class="pl-smi">string</span><span class="pl-kos">,</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">func</span> <span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str1</span><span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-smi">string</span> <span class="pl-s1">v</span> <span class="pl-c1">=</span> func<span class="pl-kos">(</span>str1<span class="pl-kos">,</span> str2<span class="pl-kos">)</span><span class="pl-kos">;</span>
+            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>v<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-kos">}</span>
+
+        <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Process</span><span class="pl-kos">(</span><span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">funcs</span> <span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str1</span> <span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-smi">var</span> func <span class="pl-k">in</span> funcs<span class="pl-kos">)</span>
+            <span class="pl-kos">{</span>
+                <span class="pl-smi">string</span> <span class="pl-s1">v</span> <span class="pl-c1">=</span> func<span class="pl-kos">(</span>str1<span class="pl-kos">,</span> str2<span class="pl-kos">)</span><span class="pl-kos">;</span>
+                Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>v<span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-kos">}</span>
+        <span class="pl-kos">}</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <h3>4.总结</h3>

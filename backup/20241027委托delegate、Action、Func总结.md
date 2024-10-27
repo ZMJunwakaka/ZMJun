@@ -234,38 +234,49 @@ protected void DoBusiness(List<ICheckProcess<T>> processors, T context)
 > Func 是一个内置的委托类型，表示一个返回值的方法。
 > 可以有最多 16 个输入参数，最后一个类型参数是返回类型。
 1. 基本使用
-示例：简单的加法运算
+示例
 
 ```csharp
-using System;
-
-public class Program
+namespace ConsoleApp_20241027Delegate
 {
-    public static void Main()
+    internal class Program
     {
-        Func<int, int, int> add = (x, y) => x + y; // 定义 Func
-        int result = add(5, 3); // 调用 Func
-        Console.WriteLine($"Result of addition: {result}"); // 输出 Result of addition: 8
+        static void Main(string[] args)
+        {
+            Program program = new Program();
+            Func<string, string, string> fuc = (str1,str2) => str1 + str2;
+            
+            AddStr(fuc, "Hello", "World");
+            Func<string, string, string> fuc1 = (str1, str2) => str1 + str2;
+            Func<string, string, string> fuc2 = (str1, str2) => str1 +" "+ str2;
+            Func<string, string, string> fuc3 = (str1, str2) => str1 +","+ str2;
+            List<Func<string, string, string>> funcs = new List<Func<string, string, string>>();
+            funcs.Add(fuc1);
+            funcs.Add(fuc2);
+            funcs.Add(fuc3);
+            Process(funcs, "hello", "world");
+
+        }
+
+        public static void AddStr(Func<string,string,string> func ,string str1,string str2)
+        {
+            string v = func(str1, str2);
+            Console.WriteLine(v);
+        }
+
+        public static void Process(List<Func<string, string, string>> funcs ,string str1 ,string str2)
+        {
+            foreach (var func in funcs)
+            {
+                string v = func(str1, str2);
+                Console.WriteLine(v);
+            }
+        }
     }
 }
+
 ```
-2. 返回随机数
-示例：生成随机数的 Func
 
-```csharp
-
-using System;
-
-public class Program
-{
-    public static void Main()
-    {
-        Func<int> getRandomNumber = () => new Random().Next(1, 101); // 生成1到100之间的随机数
-        int randomNumber = getRandomNumber(); // 调用 Func
-        Console.WriteLine($"Random Number: {randomNumber}");
-    }
-}
-```
 ### 4.总结
 委托：用于定义函数指针，可以自定义复杂的委托类型。可以将函数作为参数传入另一个方法。
 Action：适合执行没有返回值的方法，如事件处理。
