@@ -199,7 +199,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>总之，<code class="notranslate">is</code> 和 <code class="notranslate">as</code> 提供了更安全的方式来进行类型检查和转换，因此在大多数情况下推荐使用它们。</p>
 <h2>4.使用Conditional特性而不是#if条件编译</h2>
 <h2>5.为类型提供ToString( )方法</h2>
-<h2>6.理解几个等同性判断之间的关系</h2></div>
+<h2>6.理解几个等同性判断之间的关系</h2>
+<ol>
+<li>public static bool ReferenceEquals(object left, object right);<br>
+2.public static bool Equals(object left, object right);<br>
+3.public virtual bool Equals(object right);<br>
+4.public static bool operator ==(MyClass left, MyClass right);<br>
+5==</li>
+</ol></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
