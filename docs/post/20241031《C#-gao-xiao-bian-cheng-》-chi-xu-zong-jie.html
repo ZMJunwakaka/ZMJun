@@ -139,9 +139,67 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ol>
 <p>在对象实例化后，<code class="notranslate">readonly</code> 字段的值不能被更改，因此它提供了一种有效的方式来确保字段的不可变性。</p>
 <h2>3.推荐使用is或as操作符而不是强制类型转换</h2>
-<p>1.强制类型转换用法<br>
-2.is<br>
-3as</p></div>
+<p>在 C# 中，强制类型转换、<code class="notranslate">is</code> 和 <code class="notranslate">as</code> 操作符都是用于处理类型转换的工具。它们各自的用法和推荐场景如下：</p>
+<h3>强制类型转换</h3>
+<ul>
+<li>
+<p><strong>语法</strong>：使用括号表示目标类型，例如 <code class="notranslate">(TargetType)value</code>。</p>
+</li>
+<li>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>如果转换失败，会抛出 <code class="notranslate">InvalidCastException</code>。</li>
+<li>适用于已知类型安全的转换。</li>
+</ul>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">;</span>
+<span class="pl-smi">string</span> <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">)</span>obj<span class="pl-kos">;</span> <span class="pl-c">// 强制转换，安全</span></pre></div>
+</li>
+</ul>
+<h3><code class="notranslate">is</code> 操作符</h3>
+<ul>
+<li>
+<p><strong>用法</strong>：用于检查对象是否是特定类型，返回布尔值。</p>
+</li>
+<li>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>在 C# 7.0 及之后的版本中，可以直接在条件语句中声明转换变量。</li>
+</ul>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">;</span>
+<span class="pl-k">if</span> <span class="pl-kos">(</span>obj <span class="pl-k">is</span> <span class="pl-smi">string</span> str<span class="pl-kos">)</span>
+<span class="pl-kos">{</span>
+    <span class="pl-c">// str 在这里被视为 string 类型</span>
+    Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>str<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: Hello</span>
+<span class="pl-kos">}</span></pre></div>
+</li>
+</ul>
+<h3><code class="notranslate">as</code> 操作符</h3>
+<ul>
+<li>
+<p><strong>用法</strong>：用于尝试将对象转换为指定类型，转换成功时返回该类型的对象，失败时返回 <code class="notranslate">null</code>。</p>
+</li>
+<li>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>适用于可能为空的转换，避免了异常抛出。</li>
+</ul>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">;</span>
+<span class="pl-smi">string</span> <span class="pl-s1">str</span> <span class="pl-c1">=</span> obj <span class="pl-k">as</span> <span class="pl-smi">string</span><span class="pl-kos">;</span> <span class="pl-c">// 如果转换失败，str 会是 null</span>
+<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">str</span> <span class="pl-c1">!=</span> <span class="pl-c1">null</span><span class="pl-kos">)</span>
+<span class="pl-kos">{</span>
+    Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>str<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: Hello</span>
+<span class="pl-kos">}</span></pre></div>
+</li>
+</ul>
+<h3>推荐使用</h3>
+<ul>
+<li><strong>使用 <code class="notranslate">is</code> 和 <code class="notranslate">as</code></strong>：在不确定对象类型的情况下，推荐使用 <code class="notranslate">is</code> 和 <code class="notranslate">as</code>。这可以避免运行时异常，提供更安全的转换方式。</li>
+<li><strong>强制类型转换</strong>：在确认对象确实可以安全转换的情况下使用，通常在性能关键的场景中。</li>
+</ul>
+<p>总之，<code class="notranslate">is</code> 和 <code class="notranslate">as</code> 提供了更安全的方式来进行类型检查和转换，因此在大多数情况下推荐使用它们。</p>
+<h2>4.使用Conditional特性而不是#if条件编译</h2>
+<h2>5.为类型提供ToString( )方法</h2>
+<h2>6.理解几个等同性判断之间的关系</h2></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
