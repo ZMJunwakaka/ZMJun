@@ -200,13 +200,140 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>4.使用Conditional特性而不是#if条件编译</h2>
 <h2>5.为类型提供ToString( )方法</h2>
 <h2>6.理解几个等同性判断之间的关系</h2>
+<p>在 C# 中，不同的等同性判断方法和操作符具有不同的语义和用法。理解它们之间的关系有助于更好地处理对象的比较。以下是对这几种判断等同性的方法的详细解释：</p>
+<h4>1. <code class="notranslate">ReferenceEquals(object left, object right)</code></h4>
+<ul>
+<li>
+<p><strong>用途</strong>：用于判断两个对象引用是否指向同一个实例。</p>
+</li>
+<li>
+<p><strong>特点</strong>：无论对象的类型如何，只有在两个引用相同（即它们指向同一内存地址）时返回 <code class="notranslate">true</code>，否则返回 <code class="notranslate">false</code>。</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">var</span> <span class="pl-s1">obj1</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">var</span> <span class="pl-s1">obj2</span> <span class="pl-c1">=</span> obj1<span class="pl-kos">;</span>
+<span class="pl-smi">var</span> <span class="pl-s1">obj3</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>ReferenceEquals<span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj2<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: true</span>
+Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>ReferenceEquals<span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj3<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: false</span></pre></div>
+</li>
+</ul>
+<h4>2. <code class="notranslate">Equals(object left, object right)</code></h4>
+<ul>
+<li>
+<p><strong>用途</strong>：用于判断两个对象是否相等。</p>
+</li>
+<li>
+<p><strong>特点</strong>：默认情况下，它调用 <code class="notranslate">Object.Equals</code> 方法，比较引用。如果需要，可以在派生类中重写此方法以实现自定义的比较逻辑。</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate">Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">.</span><span class="pl-en">Equals</span><span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj2<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: true</span>
+Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">.</span><span class="pl-en">Equals</span><span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj3<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: false</span></pre></div>
+</li>
+</ul>
+<h4>3. <code class="notranslate">public virtual bool Equals(object right)</code></h4>
+<ul>
+<li>
+<p><strong>用途</strong>：在类中重写的等同性比较方法，通常用于自定义类。</p>
+</li>
+<li>
+<p><strong>特点</strong>：允许类实现自定义的比较逻辑，通常基于对象的属性值而不是引用。</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">MyClass</span>
+<span class="pl-kos">{</span>
+    <span class="pl-k">public</span> <span class="pl-smi">int</span> <span class="pl-s1">Value</span> <span class="pl-kos">{</span> <span class="pl-k">get</span><span class="pl-kos">;</span> <span class="pl-k">set</span><span class="pl-kos">;</span> <span class="pl-kos">}</span>
+    
+    <span class="pl-k">public</span> <span class="pl-k">override</span> <span class="pl-smi">bool</span> <span class="pl-en">Equals</span><span class="pl-kos">(</span><span class="pl-smi">object</span> <span class="pl-s1">obj</span><span class="pl-kos">)</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-k">if</span> <span class="pl-kos">(</span>obj <span class="pl-k">is</span> MyClass other<span class="pl-kos">)</span>
+            <span class="pl-k">return</span> <span class="pl-k">this</span><span class="pl-kos">.</span>Value <span class="pl-c1">==</span> other<span class="pl-kos">.</span>Value<span class="pl-kos">;</span>
+        <span class="pl-k">return</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+</li>
+</ul>
+<h4>4. <code class="notranslate">public static bool operator ==(MyClass left, MyClass right)</code></h4>
+<ul>
+<li>
+<p><strong>用途</strong>：用于定义 <code class="notranslate">==</code> 操作符的行为。</p>
+</li>
+<li>
+<p><strong>特点</strong>：通常需要与 <code class="notranslate">Equals</code> 方法一起实现，以确保在使用 <code class="notranslate">==</code> 和 <code class="notranslate">.Equals()</code> 进行比较时的一致性。自定义逻辑可以基于对象的属性。</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">bool</span> <span class="pl-en">operator</span> <span class="pl-c1">==</span><span class="pl-kos">(</span><span class="pl-smi">MyClass</span> <span class="pl-s1">left</span><span class="pl-kos">,</span> <span class="pl-smi">MyClass</span> <span class="pl-s1">right</span><span class="pl-kos">)</span>
+<span class="pl-kos">{</span>
+    <span class="pl-k">if</span> <span class="pl-kos">(</span>ReferenceEquals<span class="pl-kos">(</span>left<span class="pl-kos">,</span> right<span class="pl-kos">)</span><span class="pl-kos">)</span> <span class="pl-k">return</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>
+    <span class="pl-k">if</span> <span class="pl-kos">(</span>left <span class="pl-k">is</span> <span class="pl-c1">null</span> <span class="pl-c1">||</span> right <span class="pl-k">is</span> <span class="pl-c1">null</span><span class="pl-kos">)</span> <span class="pl-k">return</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
+    <span class="pl-k">return</span> left<span class="pl-kos">.</span>Value <span class="pl-c1">==</span> right<span class="pl-kos">.</span>Value<span class="pl-kos">;</span>
+<span class="pl-kos">}</span></pre></div>
+</li>
+</ul>
+<h4>5. <code class="notranslate">==</code> 操作符</h4>
+<ul>
+<li>
+<p><strong>用途</strong>：用于比较两个对象是否相等。</p>
+</li>
+<li>
+<p><strong>特点</strong>：如果没有自定义 <code class="notranslate">==</code> 操作符，默认行为与 <code class="notranslate">ReferenceEquals</code> 相同（比较引用）。使用 <code class="notranslate">==</code> 时会调用自定义实现（如果存在）。</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">MyClass</span> <span class="pl-s1">objA</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> MyClass <span class="pl-kos">{</span> <span class="pl-s1">Value</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
+<span class="pl-smi">MyClass</span> <span class="pl-s1">objB</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> MyClass <span class="pl-kos">{</span> <span class="pl-s1">Value</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
+Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">objA</span> <span class="pl-c1">==</span> <span class="pl-s1">objB</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 如果重写了 ==，则输出 true（根据自定义逻辑）</span></pre></div>
+</li>
+</ul>
+<h3>总结</h3>
+<ul>
+<li><strong><code class="notranslate">ReferenceEquals</code></strong> 用于比较引用相等性，该静态方法不能被重写。</li>
+<li><strong><code class="notranslate">Equals</code> 方法</strong> 和 <strong><code class="notranslate">operator ==</code></strong> 用于比较值相等性，可以被重写以提供自定义的比较逻辑。</li>
+<li>说白了ReferenceEquals比较引用类型地址是否相等，其他几个都可以重写，进行自定义比较。</li>
+</ul>
+<h2>8.<del>使用属性而不是可访问的数据成员</del> 直接用LinQ</h2>
+<h2>10.使用可选参数减少方法重载的数量</h2>
+<p>使用可选参数减少方法重载的数量是 C# 中一种编程技巧，旨在通过给方法定义默认值，从而避免定义多个重载版本。这种做法可以使代码更简洁，提高可维护性。</p>
+<h3>可选参数</h3>
+<p>在 C# 中，方法参数可以被定义为可选参数，即在调用该方法时可以选择是否提供该参数的值。如果不提供，参数将使用在方法定义时指定的默认值。可选参数必须在参数列表的末尾定义。</p>
+<h3>示例</h3>
+<p>以下是一个示例，展示如何使用可选参数来减少方法重载的数量：</p>
+<h4>1. 方法重载示例</h4>
+<p>假设我们需要一个方法来计算矩形的面积，支持不同的参数组合：</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">AreaCalculator</span>
+<span class="pl-kos">{</span>
+    <span class="pl-c">// 重载方法</span>
+    <span class="pl-k">public</span> <span class="pl-smi">double</span> <span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-smi">double</span> <span class="pl-s1">width</span><span class="pl-kos">)</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-k">return</span> <span class="pl-s1">width</span> <span class="pl-c1">*</span> <span class="pl-s1">width</span><span class="pl-kos">;</span> <span class="pl-c">// 计算正方形面积</span>
+    <span class="pl-kos">}</span>
+
+    <span class="pl-k">public</span> <span class="pl-smi">double</span> <span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-smi">double</span> <span class="pl-s1">width</span><span class="pl-kos">,</span> <span class="pl-smi">double</span> <span class="pl-s1">height</span><span class="pl-kos">)</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-k">return</span> <span class="pl-s1">width</span> <span class="pl-c1">*</span> <span class="pl-s1">height</span><span class="pl-kos">;</span> <span class="pl-c">// 计算矩形面积</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<p>在这个例子中，我们定义了两个重载方法，分别计算正方形和矩形的面积。</p>
+<h4>2. 使用可选参数</h4>
+<p>现在，我们可以通过使用可选参数来简化这个类，减少重载的数量：</p>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">AreaCalculator</span>
+<span class="pl-kos">{</span>
+    <span class="pl-c">// 使用可选参数</span>
+    <span class="pl-k">public</span> <span class="pl-smi">double</span> <span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-smi">double</span> <span class="pl-s1">width</span><span class="pl-kos">,</span> <span class="pl-smi">double</span> <span class="pl-s1">height</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">)</span>
+    <span class="pl-kos">{</span>
+        <span class="pl-c">// 如果只提供了宽度，计算正方形的面积</span>
+        <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">height</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span><span class="pl-kos">)</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-k">return</span> <span class="pl-s1">width</span> <span class="pl-c1">*</span> <span class="pl-s1">width</span><span class="pl-kos">;</span> <span class="pl-c">// 正方形面积</span>
+        <span class="pl-kos">}</span>
+        <span class="pl-k">else</span>
+        <span class="pl-kos">{</span>
+            <span class="pl-k">return</span> <span class="pl-s1">width</span> <span class="pl-c1">*</span> <span class="pl-s1">height</span><span class="pl-kos">;</span> <span class="pl-c">// 矩形面积</span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<p>在这个例子中，<code class="notranslate">height</code> 参数是可选的，如果调用时只提供 <code class="notranslate">width</code>，则会计算正方形的面积。</p>
+<h3>调用方法</h3>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">var</span> <span class="pl-s1">calculator</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> AreaCalculator<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">double</span> <span class="pl-s1">squareArea</span> <span class="pl-c1">=</span> calculator<span class="pl-kos">.</span><span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 计算正方形面积，结果是 25</span>
+<span class="pl-smi">double</span> <span class="pl-s1">rectangleArea</span> <span class="pl-c1">=</span> calculator<span class="pl-kos">.</span><span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">10</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 计算矩形面积，结果是 50</span></pre></div>
+<h3>优点</h3>
 <ol>
-<li>public static bool ReferenceEquals(object left, object right);<br>
-2.public static bool Equals(object left, object right);<br>
-3.public virtual bool Equals(object right);<br>
-4.public static bool operator ==(MyClass left, MyClass right);<br>
-5==</li>
-</ol></div>
+<li><strong>减少代码重复</strong>：使用可选参数减少了多个方法的重复定义，简化了代码。</li>
+<li><strong>提高可读性</strong>：调用方法时只需关注一个方法，而不必查看多个重载。</li>
+<li><strong>灵活性</strong>：可以方便地添加更多的可选参数而不增加重载数量。</li>
+</ol>
+<h3>总结</h3>
+<p>使用可选参数是一种减少方法重载数量的有效策略，它可以使代码更简洁、更易于维护，同时保持灵活性。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
