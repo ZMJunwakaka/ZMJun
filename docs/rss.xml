@@ -1,5 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>郑明君のBlog</title><link>https://ZMJunwakaka.github.io/ZMJun</link><description>C# Learning Blog</description><copyright>郑明君のBlog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/80440497?v=4</url><title>avatar</title><link>https://ZMJunwakaka.github.io/ZMJun</link></image><lastBuildDate>Thu, 31 Oct 2024 14:44:12 +0000</lastBuildDate><managingEditor>郑明君のBlog</managingEditor><ttl>60</ttl><webMaster>郑明君のBlog</webMaster><item><title>20241031《C#高效编程》持续总结</title><link>https://ZMJunwakaka.github.io/ZMJun/post/20241031%E3%80%8AC%23-gao-xiao-bian-cheng-%E3%80%8B-chi-xu-zong-jie.html</link><description>## 1.使用属性而不是可访问的数据成员&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>郑明君のBlog</title><link>https://ZMJunwakaka.github.io/ZMJun</link><description>C# Learning Blog</description><copyright>郑明君のBlog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/80440497?v=4</url><title>avatar</title><link>https://ZMJunwakaka.github.io/ZMJun</link></image><lastBuildDate>Fri, 08 Nov 2024 03:21:06 +0000</lastBuildDate><managingEditor>郑明君のBlog</managingEditor><ttl>60</ttl><webMaster>郑明君のBlog</webMaster><item><title>java配置环境变量</title><link>https://ZMJunwakaka.github.io/ZMJun/post/java-pei-zhi-huan-jing-bian-liang.html</link><description>### 一、傻瓜式安装jdk&#13;
+![image](https://github.com/user-attachments/assets/f862addb-8980-4b52-b955-bd1e3aadd5c0)&#13;
+### 二、配置环境变量&#13;
+&#13;
+&gt; 1.只需要配置环境变量path即可&#13;
+&gt; 不用那么麻烦配置JAVA_HOME等&#13;
+&#13;
+![image](https://github.com/user-attachments/assets/cc32bb4a-070d-454e-be51-78d659efccde)&#13;
+![image](https://github.com/user-attachments/assets/3c5a8e3d-c659-4c10-baa8-a3504d5c6d81)&#13;
+![image](https://github.com/user-attachments/assets/e7e4ac47-6ed8-4665-a917-447bf17547ca)&#13;
+&#13;
+&gt; 2.配置bin文件夹，上移到最上面&#13;
+&gt; &#13;
+&#13;
+![image](https://github.com/user-attachments/assets/e7972d7d-ac0e-4a9c-b3f7-708ce6dbddef)&#13;
+&#13;
+&gt; 3.cmd检查配置是否成功&#13;
+&gt; &#13;
+&#13;
+![image](https://github.com/user-attachments/assets/c185cb6a-6bc8-4394-ab20-0a2c6f11cb55)&#13;
+&#13;
+。</description><guid isPermaLink="true">https://ZMJunwakaka.github.io/ZMJun/post/java-pei-zhi-huan-jing-bian-liang.html</guid><pubDate>Fri, 08 Nov 2024 03:20:42 +0000</pubDate></item><item><title>20241031《C#高效编程》持续总结</title><link>https://ZMJunwakaka.github.io/ZMJun/post/20241031%E3%80%8AC%23-gao-xiao-bian-cheng-%E3%80%8B-chi-xu-zong-jie.html</link><description>## 1.使用属性而不是可访问的数据成员&#13;
 ## 2.用运行时常量readonly而不是编译期常量const&#13;
 在 C# 中，使用 `readonly` 字段而不是 `const` 常量在许多情况下是一个更好的选择，尤其是当需要在运行时确定值时。</description><guid isPermaLink="true">https://ZMJunwakaka.github.io/ZMJun/post/20241031%E3%80%8AC%23-gao-xiao-bian-cheng-%E3%80%8B-chi-xu-zong-jie.html</guid><pubDate>Thu, 31 Oct 2024 14:43:40 +0000</pubDate></item><item><title>20241031switch与goto</title><link>https://ZMJunwakaka.github.io/ZMJun/post/20241031switch-yu-goto.html</link><guid isPermaLink="true">https://ZMJunwakaka.github.io/ZMJun/post/20241031switch-yu-goto.html</guid><pubDate>Thu, 31 Oct 2024 02:12:18 +0000</pubDate></item><item><title>20241027委托delegate、Action、Func总结</title><link>https://ZMJunwakaka.github.io/ZMJun/post/20241027-wei-tuo-delegate%E3%80%81Action%E3%80%81Func-zong-jie.html</link><description>## 基本概念与应用&#13;
 ### 一、 [委托（Delegate）](https://learn.microsoft.com/zh-cn/dotnet/csharp/programming-guide/delegates/)&#13;
