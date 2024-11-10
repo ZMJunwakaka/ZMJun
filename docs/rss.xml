@@ -1,11 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>郑明君のBlog</title><link>https://ZMJunwakaka.github.io/ZMJun</link><description>C# Learning Blog</description><copyright>郑明君のBlog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/80440497?v=4</url><title>avatar</title><link>https://ZMJunwakaka.github.io/ZMJun</link></image><lastBuildDate>Fri, 08 Nov 2024 07:42:23 +0000</lastBuildDate><managingEditor>郑明君のBlog</managingEditor><ttl>60</ttl><webMaster>郑明君のBlog</webMaster><item><title>mysql安装配置之坑</title><link>https://ZMJunwakaka.github.io/ZMJun/post/mysql-an-zhuang-pei-zhi-zhi-keng.html</link><description>### 1.安装完成配置完环境变量后使用dbeaver等工具连接报错（需要开启root远程登录）&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>郑明君のBlog</title><link>https://ZMJunwakaka.github.io/ZMJun</link><description>C# Learning Blog</description><copyright>郑明君のBlog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/80440497?v=4</url><title>avatar</title><link>https://ZMJunwakaka.github.io/ZMJun</link></image><lastBuildDate>Sun, 10 Nov 2024 11:20:35 +0000</lastBuildDate><managingEditor>郑明君のBlog</managingEditor><ttl>60</ttl><webMaster>郑明君のBlog</webMaster><item><title>mysql安装配置之坑</title><link>https://ZMJunwakaka.github.io/ZMJun/post/mysql-an-zhuang-pei-zhi-zhi-keng.html</link><description>&gt; 目前mysql8有一个问题：root用户访问权限默认为localhost，导致navicat等软件连接不上，需要新建用户并设置访问权限为%（所有）&#13;
+### 一、安装完成配置完环境变量后使用dbeaver等工具连接mysql报错（需要开启root远程登录）&#13;
 &#13;
-&gt; mysqlAccess denied for user 'root'@'localhost' (using password: YES)&#13;
+&gt; 报错信息：mysqlAccess denied for user 'root'@'localhost' (using password: YES)&#13;
 &#13;
-### 2.允许root远程登录&#13;
+### 二、解决方案一：允许root远程登录&#13;
 具体操作看网址：&#13;
-https://blog.csdn.net/liliuqing/article/details/88723409。</description><guid isPermaLink="true">https://ZMJunwakaka.github.io/ZMJun/post/mysql-an-zhuang-pei-zhi-zhi-keng.html</guid><pubDate>Fri, 08 Nov 2024 07:41:53 +0000</pubDate></item><item><title>java配置环境变量</title><link>https://ZMJunwakaka.github.io/ZMJun/post/java-pei-zhi-huan-jing-bian-liang.html</link><description>### 一、傻瓜式安装jdk&#13;
+https://blog.csdn.net/liliuqing/article/details/88723409&#13;
+&#13;
+### 三、解决方案二：重装mysql&#13;
+&#13;
+&gt; 1.卸载mysql&#13;
+&#13;
+![image](https://github.com/user-attachments/assets/6e940fda-727f-4876-9d2c-c5d8cc1c0a53)&#13;
+&#13;
+&gt; 2.安装mysql，双击mysql.msi选择新建用户‘hairun’，host权限为%（所有）&#13;
+&#13;
+&lt;img width='600' alt='604547c71758827bf3fb95cac5b2082' src='https://github.com/user-attachments/assets/84f1540d-fe2a-402b-9652-e1e1c7cc1536'&gt;&#13;
+&#13;
+&gt;3.问题解决。</description><guid isPermaLink="true">https://ZMJunwakaka.github.io/ZMJun/post/mysql-an-zhuang-pei-zhi-zhi-keng.html</guid><pubDate>Fri, 08 Nov 2024 07:41:53 +0000</pubDate></item><item><title>java配置环境变量</title><link>https://ZMJunwakaka.github.io/ZMJun/post/java-pei-zhi-huan-jing-bian-liang.html</link><description>### 一、傻瓜式安装jdk&#13;
 ![image](https://github.com/user-attachments/assets/f862addb-8980-4b52-b955-bd1e3aadd5c0)&#13;
 ### 二、配置环境变量&#13;
 &#13;
