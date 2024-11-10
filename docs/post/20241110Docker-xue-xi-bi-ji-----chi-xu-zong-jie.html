@@ -10,13 +10,13 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content=" > MQTT：后端开发工程师、嵌入式工程师必备技能。">
-<meta property="og:title" content="20241110尚硅谷MQTT学习笔记---持续总结">
-<meta property="og:description" content=" > MQTT：后端开发工程师、嵌入式工程师必备技能。">
+<meta name="description" content="">
+<meta property="og:title" content="20241110Docker学习笔记---持续总结">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20241110-shang-gui-gu-MQTT-xue-xi-bi-ji-----chi-xu-zong-jie.html">
+<meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20241110Docker-xue-xi-bi-ji-----chi-xu-zong-jie.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/80440497?v=4">
-<title>20241110尚硅谷MQTT学习笔记---持续总结</title>
+<title>20241110Docker学习笔记---持续总结</title>
 
 
 
@@ -49,7 +49,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">20241110尚硅谷MQTT学习笔记---持续总结</h1>
+<h1 class="postTitle">20241110Docker学习笔记---持续总结</h1>
 <div class="title-right">
     <a href="https://ZMJunwakaka.github.io/ZMJun" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -57,7 +57,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/ZMJunwakaka/ZMJun/issues/16" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/ZMJunwakaka/ZMJun/issues/17" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -73,37 +73,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><blockquote>
-<p>MQTT：后端开发工程师、嵌入式工程师必备技能。</p>
-</blockquote>
-<h1>一、物联网首选通讯协议：MQTT</h1>
-<h2>1.什么是MQTT、发布订阅模式</h2>
-<blockquote>
-<p>MQTT（Message Queuing Telemetry Transport）由IBM于1999年开发的一种基于 <strong>"发布订阅模式"的轻量级的消息传输协议!</strong></p>
-</blockquote>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/adc17677-1750-4faf-92d1-97ff98613e49"><img src="https://github.com/user-attachments/assets/adc17677-1750-4faf-92d1-97ff98613e49" alt="image" style="max-width: 100%;"></a></p>
-<blockquote>
-<p>发布订阅模式是一种传统的客户端-服务器架构的<code class="notranslate">替代方案</code>，因为一般传统的客户端-服务器是客户端能够直接和服务器进行通信完成消息的传输。发布订阅模式会将发送消息的发布者publisher与接收消息的订阅者subscribers进行<code class="notranslate">分离</code>，publisher与subscribers 并不会直接通信，他们甚至都不清楚对方是否存在，他们之间的交流由第三方组件<code class="notranslate">broker</code>代理。</p>
-</blockquote>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f1a77e0b-7ae3-4bde-b4d7-53259d6d0021"><img src="https://github.com/user-attachments/assets/f1a77e0b-7ae3-4bde-b4d7-53259d6d0021" alt="image-20240522234104355" style="max-width: 100%;"></a></p>
-<p>pub/sub 最重要的方面是 publisher 与 subscriber 的解藕，这种耦合度有下面二个维度：</p>
-<p>1、<strong>空间解耦</strong>：publisher 与 subscriber 并不知道对方的存在。</p>
-<p>2、<strong>时间解藕</strong>：publisher 与 subscriber 并不一定需要同时运行。</p>
-<p><strong>代理broker</strong>： <strong>EMQX</strong> ，是一款实现了MQTT协议的，开源的MQTT<code class="notranslate">消息代理软件</code>。MQTT定义了消息通讯的规则和流程，而EMQX则是遵循这些规则的软件，使得设备能够依据MQTT协议进行有效通信。在新版本的EMQX中同时支持MQTT<code class="notranslate">3.1.1协议和5.0协议</code>。</p>
-<p>官网地址：<a href="https://www.emqx.com/zh" rel="nofollow">https://www.emqx.com/zh</a></p>
-<p>其他代理软件：<a href="https://www.emqx.com/en/blog/the-ultimate-guide-to-mqtt-broker-comparison" rel="nofollow">https://www.emqx.com/en/blog/the-ultimate-guide-to-mqtt-broker-comparison</a></p>
-<h2>2.MQTT特性</h2>
-<blockquote>
-<p>MQTT它在 <strong>物联网</strong> 应用中广受欢迎，能够实现传感器、执行器和其它设备之间的高效通信。非常适用于资源受限的设备和低带宽、高延迟或不稳定的网络环境。</p>
-</blockquote>
-<p>1、 <strong>轻量级：</strong> 物联网设备通常在处理能力、内存和能耗方面受到限制。<code class="notranslate">MQTT开销低、报文小</code>的特点使其非常适合这些设备，因为它消耗更少的资源，即使在有限的能力下也能实现高效的通信。</p>
-<p>2、 <strong>可靠：</strong> 物联网网络常常面临高延迟或连接不稳定的情况。<code class="notranslate">MQTT支持多种QoS等级、会话感知和持久连接</code>，即使在困难的条件下也能保证消息的可靠传递，使其非常适合物联网应用。</p>
-<p>3、 <strong>安全通信：</strong> 安全对于物联网网络至关重要，因为其经常涉及敏感数据的传输。为确保数据在传输过程中的机密性，<code class="notranslate">MQTT提供传输层安全（TLS）和安全套接层（SSL）加密功能</code>。此外，MQTT 还通过用户名/密码凭证或客户端证书提供身份验证和授权机制，以保护网络及其资源的访问。</p>
-<p>4、 <strong>双向通信：</strong> MQTT的发布-订阅模式为设备之间提供了无缝的双向通信方式。<code class="notranslate">客户端既可以向主题发布消息，也可以订阅接收特定主题上的消息</code>，从而实现了物联网生态系统中的高效数据交换，而无需直接将设备耦合在一起。这种模式也简化了新设备的集成，同时保证了系统易于扩展。</p>
-<h3>注1：发布者和订阅者都是MQTT的一种客户端，它们与EMQX（代理软件broker）进行双向通讯。</h3>
-<p>（发布者是客户端、与EMQX双向通信，订阅者是客户端、与EMQX双向通信）</p>
-<h3>注2：EMQX是代理软件、MQTTX是客户端工具</h3>
-<p>5、 <strong>语言支持：</strong> 物联网系统包含使用各种编程语言开发的设备和应用。<code class="notranslate">MQTT具有广泛的语言支持</code>，使其能够轻松与多个平台和技术进行集成，从而实现了物联网生态系统中的无缝通信和互操作性。常见编程语言的支持：PHP、Node.js、Python、Golang、Node.js、java、C#等。</p></div>
+<div class="markdown-body" id="postBody"></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
