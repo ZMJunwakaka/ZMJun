@@ -10,12 +10,12 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="![image](https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc)
-
+<meta name="description" content="### 1.Docker架构
+![image](https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc)
 1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。">
 <meta property="og:title" content="20241110Docker学习笔记---持续总结">
-<meta property="og:description" content="![image](https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc)
-
+<meta property="og:description" content="### 1.Docker架构
+![image](https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc)
 1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20241110Docker-xue-xi-bi-ji-----chi-xu-zong-jie.html">
@@ -77,15 +77,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc"><img src="https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc" alt="image" style="max-width: 100%;"></a></p>
-<p>1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。<br>
-2.docker提供一个cli用于操作docker主机后台进程<br>
+<div class="markdown-body" id="postBody"><h3>1.Docker架构</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc"><img src="https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc" alt="image" style="max-width: 100%;"></a><br>
+1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。<br>
+2.docker-cli：用于操作docker主机后台进程<br>
 3.docker应用市场：将所有的应用集中到应用市场中。<br>
-4.docker pull redis:<br>
-5.docker run redis:<br>
-6.docker build xxx:<br>
-7.docker push xxx:</p>
-<h3>1.什么是容器</h3></div>
+4.docker pull redis：下载redis镜像到本机<br>
+5.docker run redis：用镜像启动应用（容器）<br>
+6.docker build xxx：自己制作软件镜像<br>
+7.docker push xxx：发送自己制作的软件镜像到软件应用市场<br>
+注1：<code class="notranslate">镜像（Images）</code> 就是软件包<br>
+注2：<code class="notranslate">容器（Containers）</code> 就是用镜像启动起来的应用，每一个应用称为一个容器。</p>
+<h3>2.理解容器</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/494dc180-1924-4f4d-98c0-ae92240baa5c"><img src="https://github.com/user-attachments/assets/494dc180-1924-4f4d-98c0-ae92240baa5c" alt="image" style="max-width: 100%;"></a></p>
+<h3>3.安装Docker</h3>
+<p>1.参考官网-文档<br>
+<a href="https://www.docker.com/" rel="nofollow">https://www.docker.com/</a><br>
+2.参考语雀雷丰阳-文档（Docker快速上手）<br>
+<a href="https://www.yuque.com/leifengyang" rel="nofollow">https://www.yuque.com/leifengyang</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
