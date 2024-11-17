@@ -286,7 +286,16 @@ Docker 容器的命令可以分为以下几类： <strong>容器操作相关命�
 <li>使用 <code class="notranslate">docker login</code> 登录到 Docker Hub。</li>
 <li>使用 <code class="notranslate">docker push</code> 推送镜像到 Docker Hub。</li>
 </ol>
-<h2>七、Docker存储</h2></div>
+<h2>七、Docker存储</h2>
+<p><strong>1.目录挂载</strong></p>
+<blockquote>
+<p>不使用目录挂载导致的问题：<br>
+容器内部数据修改麻烦<br>
+容器内部数据丢失问题</p>
+</blockquote>
+<p><code class="notranslate">docker run -d -p 80:80 -v /app/nghtml:/usr/share/nginx/html --name app01 nginx:latest</code><br>
+本机目录/app/nghtml映射nginx容器内目录/usr/share/nginx/html<br>
+删除容器重新运行该命令数据照样不会丢失。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
