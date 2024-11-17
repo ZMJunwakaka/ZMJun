@@ -10,11 +10,27 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## 1.Docker架构
+<meta name="description" content="# 目录
+- [一、Docker架构](##一、Docker架构)
+- [二、理解容器](##二、理解容器)
+- [三、安装Docker](##三、安装Docker)
+- [四、镜像操作](##四、镜像操作)
+- [五、容器操作](##五、容器操作)
+- [六、创建Docker容器为新镜像并推送到DockerHub](##六、创建Docker容器为新镜像并推送到DockerHub)
+- [七、Docker存储](##七、Docker存储)
+## 一、Docker架构
 ![image](https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc)
 1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。">
 <meta property="og:title" content="20241110Docker学习笔记---持续总结">
-<meta property="og:description" content="## 1.Docker架构
+<meta property="og:description" content="# 目录
+- [一、Docker架构](##一、Docker架构)
+- [二、理解容器](##二、理解容器)
+- [三、安装Docker](##三、安装Docker)
+- [四、镜像操作](##四、镜像操作)
+- [五、容器操作](##五、容器操作)
+- [六、创建Docker容器为新镜像并推送到DockerHub](##六、创建Docker容器为新镜像并推送到DockerHub)
+- [七、Docker存储](##七、Docker存储)
+## 一、Docker架构
 ![image](https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc)
 1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。">
 <meta property="og:type" content="article">
@@ -87,7 +103,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h2>1.Docker架构</h2>
+<div class="markdown-body" id="postBody"><h1>目录</h1>
+<ul>
+<li><a href="##%E4%B8%80%E3%80%81Docker%E6%9E%B6%E6%9E%84">一、Docker架构</a></li>
+<li><a href="##%E4%BA%8C%E3%80%81%E7%90%86%E8%A7%A3%E5%AE%B9%E5%99%A8">二、理解容器</a></li>
+<li><a href="##%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85Docker">三、安装Docker</a></li>
+<li><a href="##%E5%9B%9B%E3%80%81%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C">四、镜像操作</a></li>
+<li><a href="##%E4%BA%94%E3%80%81%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C">五、容器操作</a></li>
+<li><a href="##%E5%85%AD%E3%80%81%E5%88%9B%E5%BB%BADocker%E5%AE%B9%E5%99%A8%E4%B8%BA%E6%96%B0%E9%95%9C%E5%83%8F%E5%B9%B6%E6%8E%A8%E9%80%81%E5%88%B0DockerHub">六、创建Docker容器为新镜像并推送到DockerHub</a></li>
+<li><a href="##%E4%B8%83%E3%80%81Docker%E5%AD%98%E5%82%A8">七、Docker存储</a></li>
+</ul>
+<h2>一、Docker架构</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc"><img src="https://github.com/user-attachments/assets/88250f5c-48e0-4fdf-b181-90e679e5e5dc" alt="image" style="max-width: 100%;"></a><br>
 1.主机安装docker环境（Docker Host），Docker Daemon后台进程（服务）持续运行。<br>
 2.docker-cli：用于操作docker主机后台进程<br>
@@ -98,16 +124,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 7.docker push xxx：发送自己制作的软件镜像到软件应用市场<br>
 <strong>注1</strong>：<code class="notranslate">镜像（Images）</code> 就是软件包<br>
 <strong>注2</strong>：<code class="notranslate">容器（Containers）</code> 就是用镜像启动起来的应用，每一个应用称为一个容器。</p>
-<h2>2.理解容器</h2>
+<h2>二、理解容器</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/494dc180-1924-4f4d-98c0-ae92240baa5c"><img src="https://github.com/user-attachments/assets/494dc180-1924-4f4d-98c0-ae92240baa5c" alt="image" style="max-width: 100%;"></a></p>
-<h2>3.安装Docker</h2>
+<h2>三、安装Docker</h2>
 <p>1.参考官网-文档<br>
 <a href="https://www.docker.com/" rel="nofollow">https://www.docker.com/</a><br>
 2.参考语雀雷丰阳-文档（Docker快速上手）<br>
 <a href="https://www.yuque.com/leifengyang" rel="nofollow">https://www.yuque.com/leifengyang</a><br>
 3.b站尚硅谷-视频<br>
 <a href="https://www.bilibili.com/video/BV1Zn4y1X7AZ?spm_id_from=333.788.videopod.episodes&amp;vd_source=f7c0f8f3b5c6c7a28fec026bfff698c2&amp;p=6" rel="nofollow">https://www.bilibili.com/video/BV1Zn4y1X7AZ?spm_id_from=333.788.videopod.episodes&amp;vd_source=f7c0f8f3b5c6c7a28fec026bfff698c2&amp;p=6</a></p>
-<h2>4.镜像操作</h2>
+<h2>四、镜像操作</h2>
 <p>docker指定版本镜像下载--官网：推荐直接去官网找指定版本，然后拉取。<br>
 <a href="https://hub.docker.com/" rel="nofollow">https://hub.docker.com/</a><br>
 1.<code class="notranslate">docker search xxx</code>镜像检索<br>
@@ -115,7 +141,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 3.<code class="notranslate">docker pull nginx:1.26.0</code>   此类指定版本镜像拉取超时，一般是docker没有配置加速（将镜像服务器地址指定为国内的地址/更换镜像源地址）<br>
 4.<code class="notranslate">docker images</code> == <code class="notranslate">docker image ls</code>查看已经安装好的镜像<br>
 5.<code class="notranslate">docker rmi nginx:latest</code>或<code class="notranslate">docker rmi IMAGE ID</code>删除指定版本的镜像或按照唯一镜像id（IMAGE ID）删除，rmi相当于remove image缩写，docker images 查看的TAG就是镜像版本名（号）</p>
-<h2>5.容器操作</h2>
+<h2>五、容器操作</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/dc55ade2-e433-460b-882c-db8f5255ad02"><img src="https://github.com/user-attachments/assets/dc55ade2-e433-460b-882c-db8f5255ad02" alt="image" style="max-width: 100%;"></a><br>
 Docker 容器的命令可以分为以下几类： <strong>容器操作相关命令</strong> 和 <strong>常用调试命令</strong>。下面是详细的分类与使用：</p>
 <hr>
@@ -226,7 +252,7 @@ Docker 容器的命令可以分为以下几类： <strong>容器操作相关命�
 <div class="highlight highlight-source-shell"><pre class="notranslate">docker rm -f <span class="pl-s"><span class="pl-pds">$(</span>docker ps -aq<span class="pl-pds">)</span></span></pre></div>
 </li>
 </ul>
-<h2>6.将 Docker 容器创建为新镜像并将其推送到 Docker Hub</h2>
+<h2>六、创建Docker容器为新镜像并推送到DockerHub</h2>
 <p><strong>1. 创建 Docker 镜像</strong><br>
 首先，确保你有一个正在运行的容器。然后，你可以将这个容器保存为一个新镜像。</p>
 <p><strong>步骤 1：查看正在运行的容器</strong></p>
@@ -260,7 +286,7 @@ Docker 容器的命令可以分为以下几类： <strong>容器操作相关命�
 <li>使用 <code class="notranslate">docker login</code> 登录到 Docker Hub。</li>
 <li>使用 <code class="notranslate">docker push</code> 推送镜像到 Docker Hub。</li>
 </ol>
-<h2>7.Docker存储</h2></div>
+<h2>七、Docker存储</h2></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
