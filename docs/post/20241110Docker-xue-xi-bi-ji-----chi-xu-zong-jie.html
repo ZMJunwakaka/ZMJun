@@ -289,13 +289,31 @@ Docker 容器的命令可以分为以下几类： <strong>容器操作相关命�
 <h2>七、Docker存储</h2>
 <p><strong>1.目录挂载</strong></p>
 <blockquote>
-<p>不使用目录挂载导致的问题：<br>
+<p>不使用目录挂载或卷映射导致的问题：<br>
 容器内部数据修改麻烦<br>
 容器内部数据丢失问题</p>
 </blockquote>
 <p><code class="notranslate">docker run -d -p 80:80 -v /app/nghtml:/usr/share/nginx/html --name app01 nginx:latest</code><br>
-本机目录/app/nghtml映射nginx容器内目录/usr/share/nginx/html<br>
-删除容器重新运行该命令数据照样不会丢失。</p></div>
+本机目录/app/nghtml映射nginx容器内目录/usr/share/nginx/html</p>
+<blockquote>
+<p>创建目录但是没有文件，index.html文件需要自己手动添加</p>
+</blockquote>
+<p>删除容器重新运行该命令数据照样不会丢失。</p>
+<p><strong>2.卷映射</strong><br>
+2.1首页目录挂载、配置文件卷映射<br>
+<code class="notranslate">docker run -d -p 88:80 -v /app/nghtml:/usr/share/nginx/html -v ngconf:/etc/nginx --name app02 nginx:latest</code><br>
+会自动创建卷映射  cd /var/lib/docker/volumes/ngconf<br>
+卷名：ngconf，所有容器内配置文件<code class="notranslate">/etc/nginx</code>内容映射在其下_data文件夹中<br>
+2.2首页配置文件都是用卷映射<br>
+<code class="notranslate">docker run -d -p 99:80 -v nghtml:/usr/share/nginx/html -v ngconf:/etc/nginx --name app03 nginx:latest</code><br>
+卷名：nghtml，所有容器内文件<code class="notranslate">/usr/share/nginx/html</code>内容映射在其下_data文件夹中<br>
+卷名：ngconf，所有容器内配置文件<code class="notranslate">/etc/nginx</code>内容映射在其下_data文件夹中</p>
+<blockquote>
+<p>卷映射会自动创建文件夹和文件到本机，并映射，无需手动添加文件。</p>
+</blockquote>
+<p><strong>3. 哪种方式更推荐？</strong><br>
+开发阶段：推荐使用目录挂载（Bind Mount）。可以直接访问和修改主机文件，调试更方便。<br>
+生产环境：推荐使用卷映射（Volume）。更安全、可管理，且支持容器间共享和跨平台使用。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
