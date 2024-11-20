@@ -95,7 +95,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h4>PMS代码总结：</h4>
 <p>这段代码定义了一个模拟上下文类 <code class="notranslate">ParkingOrderMockContext</code>，并包含了事件处理、资源清理和停车订单的初始化逻辑。以下是对这段代码的详细讲解。</p>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> EventHandler<span class="pl-kos">(</span><span class="pl-smi"><span class="pl-smi">object</span><span class="pl-c1">?</span></span> <span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-smi">EventArgs</span> <span class="pl-s1">e</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ParkingOrderMockContext</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ParkingOrderMockContext</span> <span class="pl-c1">:</span> <span class="pl-smi">IDisposable</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-v">ParkingOrderMockContext</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
@@ -177,6 +177,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-kos">}</span></pre></div>
 <ul>
 <li><strong>Dispose</strong> 方法用于释放资源。当调用 <code class="notranslate">Dispose</code> 时，触发 <code class="notranslate">OnCleanEvent</code> 事件。使用了空合并运算符 <code class="notranslate">?.</code> 确保只有在有订阅者时才调用事件。</li>
+<li><strong>注意：using与Dispose搭配使用，前提是必须实现: IDisposable接口，并重写Dispose方法。</strong></li>
 </ul>
 <h3>3. InitParkingOrder_新建 方法</h3>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> ParkingOrdersEntity <span class="pl-en">InitParkingOrder_</span>新建<span class="pl-kos">(</span><span class="pl-smi">SelectedSoltVMExt</span> <span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">,</span> <span class="pl-smi">VehicleInfoVM</span> <span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span>

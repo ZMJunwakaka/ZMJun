@@ -7,7 +7,7 @@
 这段代码定义了一个模拟上下文类 `ParkingOrderMockContext`，并包含了事件处理、资源清理和停车订单的初始化逻辑。以下是对这段代码的详细讲解。
 ```C#
 public delegate void EventHandler(object? sender, EventArgs e);
-public class ParkingOrderMockContext
+public class ParkingOrderMockContext : IDisposable
 {
     public ParkingOrderMockContext()
     {
@@ -100,6 +100,7 @@ public void Dispose()
 ```
 
 - **Dispose** 方法用于释放资源。当调用 `Dispose` 时，触发 `OnCleanEvent` 事件。使用了空合并运算符 `?.` 确保只有在有订阅者时才调用事件。
+- **注意：using与Dispose搭配使用，前提是必须实现: IDisposable接口，并重写Dispose方法。**
 
 ### 3. InitParkingOrder_新建 方法
 
