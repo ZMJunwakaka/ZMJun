@@ -104,23 +104,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>基本的委托使用<br>
 示例：基本委托</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
 
-<span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">int</span> MathOperation<span class="pl-kos">(</span><span class="pl-smi">int</span> <span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-smi">int</span> <span class="pl-s1">y</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">int</span> <span class="pl-s1">MathOperation</span><span class="pl-kos">(</span><span class="pl-smi">int</span> <span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-smi">int</span> <span class="pl-s1">y</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
         <span class="pl-c">// 实例化委托</span>
-        <span class="pl-smi">MathOperation</span> <span class="pl-s1">add</span> <span class="pl-c1">=</span> Add<span class="pl-kos">;</span>
-        <span class="pl-smi">MathOperation</span> <span class="pl-s1">subtract</span> <span class="pl-c1">=</span> Subtract<span class="pl-kos">;</span>
+        <span class="pl-smi">MathOperation</span> <span class="pl-s1">add</span> <span class="pl-c1">=</span> <span class="pl-s1">Add</span><span class="pl-kos">;</span>
+        <span class="pl-smi">MathOperation</span> <span class="pl-s1">subtract</span> <span class="pl-c1">=</span> <span class="pl-s1">Subtract</span><span class="pl-kos">;</span>
 
         <span class="pl-c">// 使用委托</span>
-        <span class="pl-smi">int</span> <span class="pl-s1">sum</span> <span class="pl-c1">=</span> add<span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 8</span>
-        <span class="pl-smi">int</span> <span class="pl-s1">difference</span> <span class="pl-c1">=</span> subtract<span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 2</span>
+        <span class="pl-smi">int</span> <span class="pl-s1">sum</span> <span class="pl-c1">=</span> <span class="pl-s1">add</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 8</span>
+        <span class="pl-smi">int</span> <span class="pl-s1">difference</span> <span class="pl-c1">=</span> <span class="pl-s1">subtract</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 2</span>
 
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">$"</span><span class="pl-s">Sum: </span><span class="pl-kos">{</span>sum<span class="pl-kos">}</span><span class="pl-s">, Difference: </span><span class="pl-kos">{</span>difference<span class="pl-kos">}</span><span class="pl-s">"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">$</span>"Sum: <span class="pl-kos">{</span><span class="pl-s1">sum</span><span class="pl-kos">}</span>, Difference: <span class="pl-kos">{</span><span class="pl-s1">difference</span><span class="pl-kos">}</span>"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">int</span> <span class="pl-en">Add</span><span class="pl-kos">(</span><span class="pl-smi">int</span> <span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-smi">int</span> <span class="pl-s1">y</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-s1">y</span><span class="pl-kos">;</span>
@@ -130,20 +130,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>委托作为参数<br>
 示例：将委托作为方法参数</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
         <span class="pl-c">// 调用计算方法，传入不同的操作</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>Calculate<span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">,</span> Add<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 8</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>Calculate<span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">,</span> Subtract<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 2</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">Calculate</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">,</span> <span class="pl-s1">Add</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 8</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">Calculate</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">,</span> <span class="pl-s1">Subtract</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 2</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">int</span> <span class="pl-en">Calculate</span><span class="pl-kos">(</span><span class="pl-smi">int</span> <span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-smi">int</span> <span class="pl-s1">y</span><span class="pl-kos">,</span> <span class="pl-smi">MathOperation</span> <span class="pl-s1">operation</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-k">return</span> operation<span class="pl-kos">(</span>x<span class="pl-kos">,</span> y<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-k">return</span> <span class="pl-s1">operation</span><span class="pl-kos">(</span><span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-s1">y</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">int</span> <span class="pl-en">Add</span><span class="pl-kos">(</span><span class="pl-smi">int</span> <span class="pl-s1">x</span><span class="pl-kos">,</span> <span class="pl-smi">int</span> <span class="pl-s1">y</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">x</span> <span class="pl-c1">+</span> <span class="pl-s1">y</span><span class="pl-kos">;</span>
@@ -153,9 +153,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>委托与事件<br>
 示例：使用委托实现事件</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
 
-<span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> Notify<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 委托定义</span>
+<span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> <span class="pl-s1">Notify</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 委托定义</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Process</span>
 <span class="pl-kos">{</span>
@@ -163,15 +163,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
     <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">StartProcess</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Process Started...<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Process Started..."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         <span class="pl-c">// 模拟处理</span>
-        System<span class="pl-kos">.</span>Threading<span class="pl-kos">.</span>Thread<span class="pl-kos">.</span><span class="pl-en">Sleep</span><span class="pl-kos">(</span><span class="pl-c1">2000</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-        OnProcessCompleted<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 触发事件</span>
+        <span class="pl-s1">System</span><span class="pl-kos">.</span><span class="pl-s1">Threading</span><span class="pl-kos">.</span><span class="pl-s1">Thread</span><span class="pl-kos">.</span><span class="pl-en">Sleep</span><span class="pl-kos">(</span><span class="pl-c1">2000</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">OnProcessCompleted</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 触发事件</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">protected</span> <span class="pl-k">virtual</span> <span class="pl-smi">void</span> <span class="pl-en">OnProcessCompleted</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        ProcessCompleted<span class="pl-c1">?</span><span class="pl-kos">.</span>Invoke<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用事件处理程序</span>
+        <span class="pl-s1">ProcessCompleted</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">Invoke</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用事件处理程序</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span>
 
@@ -179,42 +179,42 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">Process</span> <span class="pl-s1">process</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> Process<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-        process<span class="pl-kos">.</span>ProcessCompleted <span class="pl-c1">+=</span> <span class="pl-s1">ProcessCompletedHandler</span><span class="pl-kos">;</span> <span class="pl-c">// 订阅事件</span>
-        process<span class="pl-kos">.</span><span class="pl-en">StartProcess</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-smi">Process</span> <span class="pl-s1">process</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">Process</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">process</span><span class="pl-kos">.</span><span class="pl-s1">ProcessCompleted</span> <span class="pl-c1">+=</span> <span class="pl-s1">ProcessCompletedHandler</span><span class="pl-kos">;</span> <span class="pl-c">// 订阅事件</span>
+        <span class="pl-s1">process</span><span class="pl-kos">.</span><span class="pl-en">StartProcess</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">ProcessCompletedHandler</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Process Completed!<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Process Completed!"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <ol start="4">
 <li>多播委托<br>
 示例：使用多播委托</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
 
-<span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> MultiDelegate<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> <span class="pl-s1">MultiDelegate</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">MultiDelegate</span> <span class="pl-s1">multiDelegate</span> <span class="pl-c1">=</span> MethodOne<span class="pl-kos">;</span>
+        <span class="pl-smi">MultiDelegate</span> <span class="pl-s1">multiDelegate</span> <span class="pl-c1">=</span> <span class="pl-s1">MethodOne</span><span class="pl-kos">;</span>
         <span class="pl-s1">multiDelegate</span> <span class="pl-c1">+=</span> <span class="pl-s1">MethodTwo</span><span class="pl-kos">;</span> <span class="pl-c">// 添加多个方法</span>
 
-        multiDelegate<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用所有添加的方法</span>
+        <span class="pl-s1">multiDelegate</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用所有添加的方法</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">MethodOne</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Method One Executed<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Method One Executed"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">MethodTwo</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Method Two Executed<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Method Two Executed"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <h3>二、 <a href="https://learn.microsoft.com/zh-cn/dotnet/api/system.action-1?view=net-6.0" rel="nofollow">Action</a></h3>
@@ -227,44 +227,44 @@ Action 是一个内置的委托类型，表示一个不返回值的方法（返�
 <li>使用 Action 作为回调<br>
 示例：异步操作的回调</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        PerformAsyncOperation<span class="pl-kos">(</span><span class="pl-s1"><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Operation completed!<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 使用 Action 作为回调</span>
+        <span class="pl-s1">PerformAsyncOperation</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Operation completed!"</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 使用 Action 作为回调</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">PerformAsyncOperation</span><span class="pl-kos">(</span><span class="pl-smi">Action</span> <span class="pl-s1">callback</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Performing async operation...<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Performing async operation..."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         <span class="pl-c">// 模拟异步操作</span>
-        System<span class="pl-kos">.</span>Threading<span class="pl-kos">.</span>Thread<span class="pl-kos">.</span><span class="pl-en">Sleep</span><span class="pl-kos">(</span><span class="pl-c1">2000</span><span class="pl-kos">)</span><span class="pl-kos">;</span> 
-        callback<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用回调</span>
+        <span class="pl-s1">System</span><span class="pl-kos">.</span><span class="pl-s1">Threading</span><span class="pl-kos">.</span><span class="pl-s1">Thread</span><span class="pl-kos">.</span><span class="pl-en">Sleep</span><span class="pl-kos">(</span><span class="pl-c1">2000</span><span class="pl-kos">)</span><span class="pl-kos">;</span> 
+        <span class="pl-s1">callback</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 调用回调</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <ol start="2">
 <li>使用 Action 处理多个操作<br>
 示例：多个操作的执行</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">Action</span> <span class="pl-s1">operation1</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Operation 1 executed.<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">;</span>
-        <span class="pl-smi">Action</span> <span class="pl-s1">operation2</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>Operation 2 executed.<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">;</span>
+        <span class="pl-smi">Action</span> <span class="pl-s1">operation1</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Operation 1 executed."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-smi">Action</span> <span class="pl-s1">operation2</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">"Operation 2 executed."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         
-        ExecuteOperations<span class="pl-kos">(</span>operation1<span class="pl-kos">,</span> operation2<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 将多个 Action 作为参数传递</span>
+        <span class="pl-s1">ExecuteOperations</span><span class="pl-kos">(</span><span class="pl-s1">operation1</span><span class="pl-kos">,</span> <span class="pl-s1">operation2</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 将多个 Action 作为参数传递</span>
     <span class="pl-kos">}</span>
 
-    <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">ExecuteOperations</span><span class="pl-kos">(</span><span class="pl-k">params</span> Action<span class="pl-kos">[</span><span class="pl-kos">]</span> operations<span class="pl-kos">)</span>
+    <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">ExecuteOperations</span><span class="pl-kos">(</span><span class="pl-k">params</span> <span class="pl-smi">Action</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">operations</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-smi">var</span> operation <span class="pl-k">in</span> operations<span class="pl-kos">)</span>
+        <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">operation</span> <span class="pl-k">in</span> <span class="pl-s1">operations</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            operation<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 执行每个操作</span>
+            <span class="pl-s1">operation</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 执行每个操作</span>
         <span class="pl-kos">}</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
@@ -272,39 +272,39 @@ Action 是一个内置的委托类型，表示一个不返回值的方法（返�
 <li>使用 Action 处理集合中的元素<br>
 示例：对集合中的每个元素执行操作</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">;</span>
-<span class="pl-k">using</span> System<span class="pl-kos">.</span>Collections<span class="pl-kos">.</span>Generic<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">;</span>
+<span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">.</span><span class="pl-s1">Collections</span><span class="pl-kos">.</span><span class="pl-s1">Generic</span><span class="pl-kos">;</span>
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">names</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-kos">{</span> <span class="pl-s"><span class="pl-s">"</span>Alice<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>Bob<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>Charlie<span class="pl-s">"</span></span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
-        ProcessNames<span class="pl-kos">(</span>names<span class="pl-kos">,</span> <span class="pl-s1">name <span class="pl-c1">=&gt;</span> Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s">$"</span><span class="pl-s">Hello, </span><span class="pl-kos">{</span>name<span class="pl-kos">}</span><span class="pl-s">!</span><span class="pl-s">"</span><span class="pl-kos">)</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 使用 Action 处理每个名字</span>
+        <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">names</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-kos">{</span> <span class="pl-s">"Alice"</span><span class="pl-kos">,</span> <span class="pl-s">"Bob"</span><span class="pl-kos">,</span> <span class="pl-s">"Charlie"</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
+        <span class="pl-s1">ProcessNames</span><span class="pl-kos">(</span><span class="pl-s1">names</span><span class="pl-kos">,</span> name <span class="pl-c1">=&gt;</span> <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">$</span>"Hello, <span class="pl-kos">{</span><span class="pl-s1">name</span><span class="pl-kos">}</span>!"</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 使用 Action 处理每个名字</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">ProcessNames</span><span class="pl-kos">(</span><span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">names</span><span class="pl-kos">,</span> <span class="pl-smi">Action</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">process</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-smi">var</span> name <span class="pl-k">in</span> names<span class="pl-kos">)</span>
+        <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">name</span> <span class="pl-k">in</span> <span class="pl-s1">names</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            process<span class="pl-kos">(</span>name<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 执行传入的 Action</span>
+            <span class="pl-s1">process</span><span class="pl-kos">(</span><span class="pl-s1">name</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 执行传入的 Action</span>
         <span class="pl-kos">}</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <h4>思想类似于PMS中Business处理上下文，只不过传preProcessors对象，对象中的多个方法处理上下文。</h4>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">ICheckProcess</span><span class="pl-c1">&lt;</span><span class="pl-smi">ParkingStateChangedContext</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">preProcessors</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">ICheckProcess</span><span class="pl-c1">&lt;</span><span class="pl-smi">ParkingStateChangedContext</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-DoBusiness<span class="pl-kos">(</span>preProcessors<span class="pl-kos">,</span> context<span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">DoBusiness</span><span class="pl-kos">(</span><span class="pl-s1">preProcessors</span><span class="pl-kos">,</span> <span class="pl-s1">context</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
 <span class="pl-k">protected</span> <span class="pl-smi">void</span> <span class="pl-en">DoBusiness</span><span class="pl-kos">(</span><span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">ICheckProcess</span><span class="pl-c1">&lt;</span><span class="pl-smi">T</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">processors</span><span class="pl-kos">,</span> <span class="pl-smi">T</span> <span class="pl-s1">context</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-smi">var</span> item <span class="pl-k">in</span> processors<span class="pl-kos">)</span>
+    <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">item</span> <span class="pl-k">in</span> <span class="pl-s1">processors</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        item<span class="pl-kos">.</span><span class="pl-en">CheckBeforeProcess</span><span class="pl-kos">(</span>context<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">item</span><span class="pl-kos">.</span><span class="pl-en">CheckBeforeProcess</span><span class="pl-kos">(</span><span class="pl-s1">context</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-        item<span class="pl-kos">.</span><span class="pl-en">Process</span><span class="pl-kos">(</span>context<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">item</span><span class="pl-kos">.</span><span class="pl-en">Process</span><span class="pl-kos">(</span><span class="pl-s1">context</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-        item<span class="pl-kos">.</span><span class="pl-en">CheckAfterProcess</span><span class="pl-kos">(</span>context<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">item</span><span class="pl-kos">.</span><span class="pl-en">CheckAfterProcess</span><span class="pl-kos">(</span><span class="pl-s1">context</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <h3>三、<a href="https://learn.microsoft.com/zh-cn/dotnet/api/system.func-1?view=net-7.0" rel="nofollow">Func</a></h3>
@@ -323,33 +323,33 @@ Func 是一个内置的委托类型，表示一个返回值的方法。<br>
     <span class="pl-kos">{</span>
         <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">args</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            <span class="pl-smi">Program</span> <span class="pl-s1">program</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> Program<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span><span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
+            <span class="pl-smi">Program</span> <span class="pl-s1">program</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">Program</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span><span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span> <span class="pl-s1">str2</span><span class="pl-kos">;</span>
             
-            AddStr<span class="pl-kos">(</span>fuc<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>World<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc1</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
-            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc2</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span><span class="pl-s"><span class="pl-s">"</span> <span class="pl-s">"</span></span><span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
-            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc3</span> <span class="pl-c1">=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span><span class="pl-s"><span class="pl-s">"</span>,<span class="pl-s">"</span></span><span class="pl-c1">+</span> <span class="pl-s1">str2</span></span><span class="pl-kos">;</span>
+            <span class="pl-s1">AddStr</span><span class="pl-kos">(</span><span class="pl-s1">fuc</span><span class="pl-kos">,</span> <span class="pl-s">"Hello"</span><span class="pl-kos">,</span> <span class="pl-s">"World"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc1</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span> <span class="pl-s1">str2</span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc2</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span><span class="pl-s">" "</span><span class="pl-c1">+</span> <span class="pl-s1">str2</span><span class="pl-kos">;</span>
+            <span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">fuc3</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">str1</span> <span class="pl-c1">+</span><span class="pl-s">","</span><span class="pl-c1">+</span> <span class="pl-s1">str2</span><span class="pl-kos">;</span>
             <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">funcs</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            funcs<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>fuc1<span class="pl-kos">)</span><span class="pl-kos">;</span>
-            funcs<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>fuc2<span class="pl-kos">)</span><span class="pl-kos">;</span>
-            funcs<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>fuc3<span class="pl-kos">)</span><span class="pl-kos">;</span>
-            Process<span class="pl-kos">(</span>funcs<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>hello<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>world<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">funcs</span><span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span><span class="pl-s1">fuc1</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">funcs</span><span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span><span class="pl-s1">fuc2</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">funcs</span><span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span><span class="pl-s1">fuc3</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">Process</span><span class="pl-kos">(</span><span class="pl-s1">funcs</span><span class="pl-kos">,</span> <span class="pl-s">"hello"</span><span class="pl-kos">,</span> <span class="pl-s">"world"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
         <span class="pl-kos">}</span>
 
         <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">AddStr</span><span class="pl-kos">(</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span><span class="pl-smi">string</span><span class="pl-kos">,</span><span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">func</span> <span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str1</span><span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            <span class="pl-smi">string</span> <span class="pl-s1">v</span> <span class="pl-c1">=</span> func<span class="pl-kos">(</span>str1<span class="pl-kos">,</span> str2<span class="pl-kos">)</span><span class="pl-kos">;</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>v<span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-smi">string</span> <span class="pl-s1">v</span> <span class="pl-c1">=</span> <span class="pl-s1">func</span><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">v</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         <span class="pl-kos">}</span>
 
         <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Process</span><span class="pl-kos">(</span><span class="pl-smi">List</span><span class="pl-c1">&lt;</span><span class="pl-smi">Func</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">funcs</span> <span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str1</span> <span class="pl-kos">,</span><span class="pl-smi">string</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-smi">var</span> func <span class="pl-k">in</span> funcs<span class="pl-kos">)</span>
+            <span class="pl-k">foreach</span> <span class="pl-kos">(</span><span class="pl-k">var</span> <span class="pl-s1">func</span> <span class="pl-k">in</span> <span class="pl-s1">funcs</span><span class="pl-kos">)</span>
             <span class="pl-kos">{</span>
-                <span class="pl-smi">string</span> <span class="pl-s1">v</span> <span class="pl-c1">=</span> func<span class="pl-kos">(</span>str1<span class="pl-kos">,</span> str2<span class="pl-kos">)</span><span class="pl-kos">;</span>
-                Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>v<span class="pl-kos">)</span><span class="pl-kos">;</span>
+                <span class="pl-smi">string</span> <span class="pl-s1">v</span> <span class="pl-c1">=</span> <span class="pl-s1">func</span><span class="pl-kos">(</span><span class="pl-s1">str1</span><span class="pl-kos">,</span> <span class="pl-s1">str2</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">v</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
             <span class="pl-kos">}</span>
         <span class="pl-kos">}</span>
     <span class="pl-kos">}</span>

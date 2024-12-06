@@ -94,7 +94,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>2.using与Dispose方法结合，用于单元测试mock（单元测试持久化一条数据-&gt;测试-&gt;using结束调用dispose方法删除该数据）</h3>
 <h4>PMS代码总结：</h4>
 <p>这段代码定义了一个模拟上下文类 <code class="notranslate">ParkingOrderMockContext</code>，并包含了事件处理、资源清理和停车订单的初始化逻辑。以下是对这段代码的详细讲解。</p>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> EventHandler<span class="pl-kos">(</span><span class="pl-smi"><span class="pl-smi">object</span><span class="pl-c1">?</span></span> <span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-smi">EventArgs</span> <span class="pl-s1">e</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> <span class="pl-s1">EventHandler</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-c1">?</span> <span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-smi">EventArgs</span> <span class="pl-s1">e</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ParkingOrderMockContext</span> <span class="pl-c1">:</span> <span class="pl-smi">IDisposable</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-v">ParkingOrderMockContext</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
@@ -105,26 +105,26 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-k">public</span> <span class="pl-k">event</span> <span class="pl-smi">EventHandler</span> <span class="pl-s1">OnCleanEvent</span><span class="pl-kos">;</span>
     <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">Dispose</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        OnCleanEvent<span class="pl-c1">?</span><span class="pl-kos">.</span>Invoke<span class="pl-kos">(</span><span class="pl-k">this</span><span class="pl-kos">,</span> <span class="pl-c1">null</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">OnCleanEvent</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">Invoke</span><span class="pl-kos">(</span><span class="pl-k">this</span><span class="pl-kos">,</span> <span class="pl-c1">null</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 
-    <span class="pl-k">public</span> ParkingOrdersEntity <span class="pl-en">InitParkingOrder_</span>新建<span class="pl-kos">(</span><span class="pl-smi">SelectedSoltVMExt</span> <span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">,</span> <span class="pl-smi">VehicleInfoVM</span> <span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span>
+    <span class="pl-k">public</span> <span class="pl-s1">ParkingOrdersEntity</span> <span class="pl-en">InitParkingOrder_新建</span><span class="pl-kos">(</span><span class="pl-smi">SelectedSoltVMExt</span> <span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">,</span> <span class="pl-smi">VehicleInfoVM</span> <span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-s1">ParkingOrder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrdersEntity<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-        <span class="pl-smi">var</span> <span class="pl-s1">Builder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrderBuilder<span class="pl-kos">(</span>ParkingOrder<span class="pl-kos">)</span><span class="pl-kos">;</span>
-        Builder<span class="pl-kos">.</span><span class="pl-en">ConstructBasicInfo</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-        Builder<span class="pl-kos">.</span><span class="pl-en">ConstructSlotInfo</span><span class="pl-kos">(</span>SelectedSoltVM<span class="pl-kos">)</span><span class="pl-kos">;</span>
-        Builder<span class="pl-kos">.</span><span class="pl-en">ConstructVehicleInfo</span><span class="pl-kos">(</span>VehicleInfoVM<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-s1">ParkingOrder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrdersEntity</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-k">var</span> <span class="pl-s1">Builder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrderBuilder</span><span class="pl-kos">(</span><span class="pl-s1">ParkingOrder</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Builder</span><span class="pl-kos">.</span><span class="pl-en">ConstructBasicInfo</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Builder</span><span class="pl-kos">.</span><span class="pl-en">ConstructSlotInfo</span><span class="pl-kos">(</span><span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">Builder</span><span class="pl-kos">.</span><span class="pl-en">ConstructVehicleInfo</span><span class="pl-kos">(</span><span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     
-        <span class="pl-s1">OnCleanEvent</span> <span class="pl-c1">+=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-s1">e</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> TestDataBase<span class="pl-kos">.</span><span class="pl-en">Delete</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>tdy_parkingorders<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>id<span class="pl-s">"</span></span><span class="pl-kos">,</span> ParkingOrder<span class="pl-kos">.</span>Id<span class="pl-kos">)</span></span><span class="pl-kos">;</span>
+        <span class="pl-s1">OnCleanEvent</span> <span class="pl-c1">+=</span> <span class="pl-kos">(</span><span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-s1">e</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">TestDataBase</span><span class="pl-kos">.</span><span class="pl-en">Delete</span><span class="pl-kos">(</span><span class="pl-s">"tdy_parkingorders"</span><span class="pl-kos">,</span> <span class="pl-s">"id"</span><span class="pl-kos">,</span> <span class="pl-s1">ParkingOrder</span><span class="pl-kos">.</span><span class="pl-s1">Id</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     
         <span class="pl-k">return</span> <span class="pl-s1">ParkingOrder</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 
-    <span class="pl-k">public</span> ParkingOrderMockContext <span class="pl-en">InitParkingOrder_InDB</span><span class="pl-kos">(</span><span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-s1">ParkingOrder</span><span class="pl-kos">)</span>
+    <span class="pl-k">public</span> <span class="pl-s1">ParkingOrderMockContext</span> <span class="pl-en">InitParkingOrder_InDB</span><span class="pl-kos">(</span><span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-s1">ParkingOrder</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-smi">var</span> <span class="pl-s1">repo</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrderRepository<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-        repo<span class="pl-kos">.</span><span class="pl-en">InsertParkingOrder</span><span class="pl-kos">(</span>ParkingOrder<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-k">var</span> <span class="pl-s1">repo</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrderRepository</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">repo</span><span class="pl-kos">.</span><span class="pl-en">InsertParkingOrder</span><span class="pl-kos">(</span><span class="pl-s1">ParkingOrder</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
         <span class="pl-k">return</span> <span class="pl-k">this</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
@@ -132,21 +132,21 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-kos">}</span>
 
 <span class="pl-c">//单元测试</span>
-<span class="pl-kos">[</span><span class="pl-c1">TestMethod<span class="pl-kos">(</span><span class="pl-kos">)</span></span><span class="pl-kos">]</span>
-<span class="pl-k">public</span> <span class="pl-smi">void</span> 下发查询队列任务状态_任务不存在<span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-kos">[</span><span class="pl-c1">TestMethod</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">]</span>
+<span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">下发查询队列任务状态_任务不存在</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    <span class="pl-k">using</span> <span class="pl-kos">(</span>ParkingOrderMockContext ParingOrderMockContext <span class="pl-c1">=</span> <span class="pl-k"><span class="pl-k">new</span></span> ParkingOrderMockContext<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
+    <span class="pl-k">using</span> <span class="pl-kos">(</span><span class="pl-smi">ParkingOrderMockContext</span> <span class="pl-s1">ParingOrderMockContext</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrderMockContext</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
         <span class="pl-c">//构建数据，添加删除事件</span>
-        var parkingOrder <span class="pl-c1">=</span> ParingOrderMockContext<span class="pl-kos">.</span>InitParkingOrder_新建<span class="pl-kos">(</span>SlotResult<span class="pl-kos">,</span> VehicleInfo<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-k">var</span> <span class="pl-s1">parkingOrder</span> <span class="pl-c1">=</span> <span class="pl-s1">ParingOrderMockContext</span><span class="pl-kos">.</span><span class="pl-en">InitParkingOrder_新建</span><span class="pl-kos">(</span><span class="pl-s1">SlotResult</span><span class="pl-kos">,</span> <span class="pl-s1">VehicleInfo</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         <span class="pl-c">//持久化一条数据</span>
-        ParingOrderMockContext<span class="pl-kos">.</span>InitParkingOrder_InDB<span class="pl-kos">(</span>parkingOrder<span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-s1">ParingOrderMockContext</span><span class="pl-kos">.</span><span class="pl-en">InitParkingOrder_InDB</span><span class="pl-kos">(</span><span class="pl-s1">parkingOrder</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         <span class="pl-c">// 单元测试代码</span>
     <span class="pl-kos">}</span>
         <span class="pl-c">//using结束调用Dispose()代码删除持久化的测试数据</span>
 <span class="pl-kos">}</span></pre></div>
 <h3>1. 委托定义</h3>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> EventHandler<span class="pl-kos">(</span><span class="pl-smi"><span class="pl-smi">object</span><span class="pl-c1">?</span></span> <span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-smi">EventArgs</span> <span class="pl-s1">e</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">delegate</span> <span class="pl-smi">void</span> <span class="pl-s1">EventHandler</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-c1">?</span> <span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-smi">EventArgs</span> <span class="pl-s1">e</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <ul>
 <li><strong>EventHandler</strong> 是一个委托类型，定义了事件处理方法的签名。它接受两个参数：
 <ul>
@@ -156,12 +156,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 </ul>
 <h3>2. ParkingOrderMockContext 类</h3>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ParkingOrderMockContext</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-s1">ParkingOrderMockContext</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">public</span> <span class="pl-v">ParkingOrderMockContext</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
         <span class="pl-s1">OnCleanEvent</span> <span class="pl-c1">+=</span> <span class="pl-s1">MockContext_OnCleanEvent</span><span class="pl-kos">;</span>
-    <span class="pl-kos">}</span><span class="pl-kos"></span></pre></div>
+    <span class="pl-kos">}</span></pre></div>
 <ul>
 <li><strong>ParkingOrderMockContext</strong> 类用于模拟停车订单的上下文。构造函数中，订阅了 <code class="notranslate">OnCleanEvent</code> 事件，指定了处理程序 <code class="notranslate">MockContext_OnCleanEvent</code>。</li>
 </ul>
@@ -173,33 +173,33 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h4>2.2 Dispose 方法</h4>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">Dispose</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    OnCleanEvent<span class="pl-c1">?</span><span class="pl-kos">.</span>Invoke<span class="pl-kos">(</span><span class="pl-k">this</span><span class="pl-kos">,</span> <span class="pl-c1">null</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-s1">OnCleanEvent</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">Invoke</span><span class="pl-kos">(</span><span class="pl-k">this</span><span class="pl-kos">,</span> <span class="pl-c1">null</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span></pre></div>
 <ul>
 <li><strong>Dispose</strong> 方法用于释放资源。当调用 <code class="notranslate">Dispose</code> 时，触发 <code class="notranslate">OnCleanEvent</code> 事件。使用了空合并运算符 <code class="notranslate">?.</code> 确保只有在有订阅者时才调用事件。</li>
 <li><strong>注意：using与Dispose搭配使用，前提是必须实现: IDisposable接口，并重写Dispose方法。</strong></li>
 </ul>
 <h3>3. InitParkingOrder_新建 方法</h3>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> ParkingOrdersEntity <span class="pl-en">InitParkingOrder_</span>新建<span class="pl-kos">(</span><span class="pl-smi">SelectedSoltVMExt</span> <span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">,</span> <span class="pl-smi">VehicleInfoVM</span> <span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-en">InitParkingOrder_新建</span><span class="pl-kos">(</span><span class="pl-smi">SelectedSoltVMExt</span> <span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">,</span> <span class="pl-smi">VehicleInfoVM</span> <span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    <span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-s1">ParkingOrder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrdersEntity<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-smi">var</span> <span class="pl-s1">Builder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrderBuilder<span class="pl-kos">(</span>ParkingOrder<span class="pl-kos">)</span><span class="pl-kos">;</span>
-    Builder<span class="pl-kos">.</span><span class="pl-en">ConstructBasicInfo</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    Builder<span class="pl-kos">.</span><span class="pl-en">ConstructSlotInfo</span><span class="pl-kos">(</span>SelectedSoltVM<span class="pl-kos">)</span><span class="pl-kos">;</span>
-    Builder<span class="pl-kos">.</span><span class="pl-en">ConstructVehicleInfo</span><span class="pl-kos">(</span>VehicleInfoVM<span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-kos"></span></pre></div>
+    <span class="pl-smi">ParkingOrdersEntity</span> <span class="pl-s1">ParkingOrder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrdersEntity</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">var</span> <span class="pl-s1">Builder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrderBuilder</span><span class="pl-kos">(</span><span class="pl-s1">ParkingOrder</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-s1">Builder</span><span class="pl-kos">.</span><span class="pl-en">ConstructBasicInfo</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-s1">Builder</span><span class="pl-kos">.</span><span class="pl-en">ConstructSlotInfo</span><span class="pl-kos">(</span><span class="pl-s1">SelectedSoltVM</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-s1">Builder</span><span class="pl-kos">.</span><span class="pl-en">ConstructVehicleInfo</span><span class="pl-kos">(</span><span class="pl-s1">VehicleInfoVM</span><span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-kos"></span></pre></div>
 <ul>
 <li><strong>InitParkingOrder_新建</strong> 方法用于初始化一个新的停车订单。</li>
 <li>创建一个 <code class="notranslate">ParkingOrdersEntity</code> 对象，并使用 <code class="notranslate">ParkingOrderBuilder</code> 构建基本信息、槽位信息和车辆信息。</li>
 </ul>
 <h4>3.1 事件处理程序</h4>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-s1">OnCleanEvent</span> <span class="pl-c1">+=</span> <span class="pl-s1"><span class="pl-kos">(</span><span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-s1">e</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> TestDataBase<span class="pl-kos">.</span><span class="pl-en">Delete</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>tdy_parkingorders<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>id<span class="pl-s">"</span></span><span class="pl-kos">,</span> ParkingOrder<span class="pl-kos">.</span>Id<span class="pl-kos">)</span></span><span class="pl-kos">;</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-s1">OnCleanEvent</span> <span class="pl-c1">+=</span> <span class="pl-kos">(</span><span class="pl-s1">sender</span><span class="pl-kos">,</span> <span class="pl-s1">e</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">TestDataBase</span><span class="pl-kos">.</span><span class="pl-en">Delete</span><span class="pl-kos">(</span><span class="pl-s">"tdy_parkingorders"</span><span class="pl-kos">,</span> <span class="pl-s">"id"</span><span class="pl-kos">,</span> <span class="pl-s1">ParkingOrder</span><span class="pl-kos">.</span><span class="pl-s1">Id</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <ul>
 <li>在初始化停车订单时，订阅 <code class="notranslate">OnCleanEvent</code> 事件。当事件被触发时，调用 <code class="notranslate">TestDataBase.Delete</code> 方法删除对应 ID 的停车订单记录。这确保在清理上下文时，相关的数据库记录也会被删除。</li>
 </ul>
 <h3>4. 使用示例</h3>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-kos">(</span><span class="pl-smi">ParkingOrderMockContext</span> <span class="pl-s1">ParingOrderMockContext</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrderMockContext<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-kos">(</span><span class="pl-smi">ParkingOrderMockContext</span> <span class="pl-s1">ParingOrderMockContext</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrderMockContext</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    <span class="pl-smi">var</span> <span class="pl-s1">parkingOrder</span> <span class="pl-c1">=</span> ParingOrderMockContext<span class="pl-kos">.</span><span class="pl-en">InitParkingOrder_</span>新建<span class="pl-kos">(</span>SlotResult<span class="pl-kos">,</span> VehicleInfo<span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">var</span> <span class="pl-s1">parkingOrder</span> <span class="pl-c1">=</span> <span class="pl-s1">ParingOrderMockContext</span><span class="pl-kos">.</span><span class="pl-en">InitParkingOrder_新建</span><span class="pl-kos">(</span><span class="pl-s1">SlotResult</span><span class="pl-kos">,</span> <span class="pl-s1">VehicleInfo</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-c">// 单元测试代码</span>
 <span class="pl-kos">}</span></pre></div>
 <ul>

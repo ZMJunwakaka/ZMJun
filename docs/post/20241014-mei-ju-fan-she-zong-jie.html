@@ -88,7 +88,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><h3>一、反射基本概念</h3>
 <p>反射是一种可以在运行时动态地检查类型（类、枚举、结构等）信息的技术，甚至可以访问类成员（方法、属性、字段）和自定义的特性。<br>
 在这段代码中，反射的目的是从枚举成员 VoiceNo 中获取 LedContentAttribute 特性，并返回其中的 LedContent 字段值。</p>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> System<span class="pl-kos">.</span>Reflection<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">System</span><span class="pl-kos">.</span><span class="pl-s1">Reflection</span><span class="pl-kos">;</span>
 
 <span class="pl-k">namespace</span> <span class="pl-v">ConsoleAppTest1012</span>
 <span class="pl-kos">{</span>
@@ -96,55 +96,55 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">{</span>
         <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">args</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            <span class="pl-smi">VoiceNo</span> <span class="pl-s1">voiceNo</span> <span class="pl-c1">=</span> Convert2VoiceNo<span class="pl-kos">(</span><span class="pl-kos">(</span>ParkingVehicleInExCodeEnum<span class="pl-kos">)</span><span class="pl-c1">0</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>voiceNo<span class="pl-kos">)</span><span class="pl-kos">;</span>       <span class="pl-c">//请前往指定车位</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-smi">int</span><span class="pl-kos">)</span>voiceNo<span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">//101</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>voiceNo<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">//请前往指定车位</span>
+            <span class="pl-smi">VoiceNo</span> <span class="pl-s1">voiceNo</span> <span class="pl-c1">=</span> <span class="pl-s1">Convert2VoiceNo</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-smi">ParkingVehicleInExCodeEnum</span><span class="pl-kos">)</span><span class="pl-c1">0</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">voiceNo</span><span class="pl-kos">)</span><span class="pl-kos">;</span>       <span class="pl-c">//请前往指定车位</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-smi">int</span><span class="pl-kos">)</span><span class="pl-s1">voiceNo</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">//101</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">voiceNo</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">//请前往指定车位</span>
 
             <span class="pl-c">// 反射</span>
             <span class="pl-c">// 获取枚举成员的字段信息</span>
             <span class="pl-c">// voiceNo.GetType()：获取 voiceNo 的类型信息，即 VoiceNo 枚举的类型。</span>
             <span class="pl-c">// GetField(voiceNo.ToString())：根据枚举值转换为字符串名称，获取该枚举成员的字段信息。此时，fieldInfo 代表枚举成员的元数据信息。</span>
-            <span class="pl-smi">FieldInfo</span> <span class="pl-s1">fieldInfo</span> <span class="pl-c1">=</span> voiceNo<span class="pl-kos">.</span><span class="pl-en">GetType</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">GetField</span><span class="pl-kos">(</span>voiceNo<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-smi">FieldInfo</span> <span class="pl-s1">fieldInfo</span> <span class="pl-c1">=</span> <span class="pl-s1">voiceNo</span><span class="pl-kos">.</span><span class="pl-en">GetType</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">GetField</span><span class="pl-kos">(</span><span class="pl-s1">voiceNo</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
             <span class="pl-c">// 获取自定义特性</span>
             <span class="pl-c">// 使用反射获取 fieldInfo（即对应的枚举值字段）上应用的 LedContentAttribute 特性。</span>
-            <span class="pl-smi">LedContentAttribute</span> <span class="pl-s1">attribute</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span>LedContentAttribute<span class="pl-kos">)</span>Attribute<span class="pl-kos">.</span><span class="pl-en">GetCustomAttribute</span><span class="pl-kos">(</span>fieldInfo<span class="pl-kos">,</span> <span class="pl-k">typeof</span><span class="pl-kos">(</span><span class="pl-smi">LedContentAttribute</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>fieldInfo<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>   <span class="pl-c">// ConsoleAppTest1012.VoiceNo 请前往指定车位</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>attribute<span class="pl-c1">?</span><span class="pl-kos">.</span>ToString<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">// ConsoleAppTest1012.LedContentAttribute</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>attribute<span class="pl-c1">?</span><span class="pl-kos">.</span>LedContent<span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">// {0}@请前往{1}</span>
+            <span class="pl-smi">LedContentAttribute</span> <span class="pl-s1">attribute</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-smi">LedContentAttribute</span><span class="pl-kos">)</span><span class="pl-s1">Attribute</span><span class="pl-kos">.</span><span class="pl-en">GetCustomAttribute</span><span class="pl-kos">(</span><span class="pl-s1">fieldInfo</span><span class="pl-kos">,</span> <span class="pl-k">typeof</span><span class="pl-kos">(</span><span class="pl-smi">LedContentAttribute</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">fieldInfo</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>   <span class="pl-c">// ConsoleAppTest1012.VoiceNo 请前往指定车位</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">attribute</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">// ConsoleAppTest1012.LedContentAttribute</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">attribute</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">LedContent</span><span class="pl-kos">)</span><span class="pl-kos">;</span>  <span class="pl-c">// {0}@请前往{1}</span>
 
-            <span class="pl-smi">var</span> <span class="pl-s1">content</span> <span class="pl-c1">=</span> <span class="pl-smi">string</span><span class="pl-kos">.</span><span class="pl-en">Format</span><span class="pl-kos">(</span>attribute<span class="pl-c1">?</span><span class="pl-kos">.</span>LedContent<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>鲁B66666<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>7区1号<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>content<span class="pl-kos">)</span><span class="pl-kos">;</span>                <span class="pl-c">// 鲁B66666@请前往7区1号</span>
+            <span class="pl-k">var</span> <span class="pl-s1">content</span> <span class="pl-c1">=</span> <span class="pl-smi">string</span><span class="pl-kos">.</span><span class="pl-en">Format</span><span class="pl-kos">(</span><span class="pl-s1">attribute</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">LedContent</span><span class="pl-kos">,</span> <span class="pl-s">"鲁B66666"</span><span class="pl-kos">,</span> <span class="pl-s">"7区1号"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">content</span><span class="pl-kos">)</span><span class="pl-kos">;</span>                <span class="pl-c">// 鲁B66666@请前往7区1号</span>
 
         <span class="pl-kos">}</span>
 
-        <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> VoiceNo <span class="pl-en">Convert2VoiceNo</span><span class="pl-kos">(</span><span class="pl-smi">ParkingVehicleInExCodeEnum</span> <span class="pl-s1">exCode</span><span class="pl-kos">)</span>
+        <span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-s1">VoiceNo</span> <span class="pl-en">Convert2VoiceNo</span><span class="pl-kos">(</span><span class="pl-smi">ParkingVehicleInExCodeEnum</span> <span class="pl-s1">exCode</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
             <span class="pl-k">switch</span> <span class="pl-kos">(</span><span class="pl-s1">exCode</span><span class="pl-kos">)</span>
             <span class="pl-kos">{</span>
-                <span class="pl-k">case</span> ParkingVehicleInExCodeEnum<span class="pl-kos">.</span>正常<span class="pl-c1">:</span>
-                    <span class="pl-k">return</span> <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span>请前往指定车位<span class="pl-kos">;</span>
+                <span class="pl-k">case</span> <span class="pl-s1">ParkingVehicleInExCodeEnum</span><span class="pl-kos">.</span><span class="pl-s1">正常</span><span class="pl-c1">:</span>
+                    <span class="pl-k">return</span> <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">请前往指定车位</span><span class="pl-kos">;</span>
      
                 <span class="pl-k">default</span><span class="pl-c1">:</span>
-                    <span class="pl-k">return</span> <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span>无权限<span class="pl-kos">;</span>
+                    <span class="pl-k">return</span> <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">无权限</span><span class="pl-kos">;</span>
             <span class="pl-kos">}</span>
         <span class="pl-kos">}</span>
     <span class="pl-kos">}</span>
     <span class="pl-k">public</span> <span class="pl-k">enum</span> <span class="pl-smi">ParkingVehicleInExCodeEnum</span>
     <span class="pl-kos">{</span>
-        正常 <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+        <span class="pl-c1">正常</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
 
-        未知错误 <span class="pl-c1">=</span> <span class="pl-c1">255</span><span class="pl-kos">,</span>
+        <span class="pl-c1">未知错误</span> <span class="pl-c1">=</span> <span class="pl-c1">255</span><span class="pl-kos">,</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k">enum</span> <span class="pl-smi">VoiceNo</span>
     <span class="pl-kos">{</span>
-        <span class="pl-kos">[</span><span class="pl-c1">LedContent<span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>{0}@请前往{1}<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">]</span>
-        请前往指定车位 <span class="pl-c1">=</span> <span class="pl-c1">101</span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-c1">LedContent</span><span class="pl-kos">(</span><span class="pl-s">"{0}@请前往{1}"</span><span class="pl-kos">)</span><span class="pl-kos">]</span>
+        <span class="pl-c1">请前往指定车位</span> <span class="pl-c1">=</span> <span class="pl-c1">101</span><span class="pl-kos">,</span>
 
-        <span class="pl-kos">[</span><span class="pl-c1">LedContent<span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>{0}@无权限<span class="pl-s">"</span></span><span class="pl-kos">)</span></span><span class="pl-kos">]</span>
-        无权限 <span class="pl-c1">=</span> <span class="pl-c1">200</span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-c1">LedContent</span><span class="pl-kos">(</span><span class="pl-s">"{0}@无权限"</span><span class="pl-kos">)</span><span class="pl-kos">]</span>
+        <span class="pl-c1">无权限</span> <span class="pl-c1">=</span> <span class="pl-c1">200</span><span class="pl-kos">,</span>
     <span class="pl-kos">}</span>
 
     <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">LedContentAttribute</span> <span class="pl-c1">:</span> <span class="pl-smi">Attribute</span>
@@ -201,20 +201,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">{</span>
         <span class="pl-k">return</span> <span class="pl-s1">voiceNo</span> <span class="pl-k">switch</span>
         <span class="pl-kos">{</span>
-            VoiceNo<span class="pl-kos">.</span>欢迎光临 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@欢迎光临@请勿跟车<span class="pl-s">"</span></span><span class="pl-kos">,</span>
-            VoiceNo<span class="pl-kos">.</span>请前往指定车位 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@请前往{1}<span class="pl-s">"</span></span><span class="pl-kos">,</span>
-            VoiceNo<span class="pl-kos">.</span>无权限 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@无权限<span class="pl-s">"</span></span><span class="pl-kos">,</span>
-            VoiceNo<span class="pl-kos">.</span>非启用时段 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@当前时间不可通行，请前往另一个入口<span class="pl-s">"</span></span><span class="pl-kos">,</span>
-            VoiceNo<span class="pl-kos">.</span>非白名单 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@无权限@本场站为专用场站<span class="pl-s">"</span></span><span class="pl-kos">,</span>
-            VoiceNo<span class="pl-kos">.</span>无空闲堆垛车位 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@对不起@车位已满<span class="pl-s">"</span></span><span class="pl-kos">,</span>
-            VoiceNo<span class="pl-kos">.</span>无空闲缓冲车位 <span class="pl-c1">=&gt;</span> <span class="pl-s"><span class="pl-s">"</span>{0}@对不起@当前无空闲缓冲车位，请稍后<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">欢迎光临</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@欢迎光临@请勿跟车"</span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">请前往指定车位</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@请前往{1}"</span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">无权限</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@无权限"</span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">非启用时段</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@当前时间不可通行，请前往另一个入口"</span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">非白名单</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@无权限@本场站为专用场站"</span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">无空闲堆垛车位</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@对不起@车位已满"</span><span class="pl-kos">,</span>
+            <span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">无空闲缓冲车位</span> <span class="pl-c1">=&gt;</span> <span class="pl-s">"{0}@对不起@当前无空闲缓冲车位，请稍后"</span><span class="pl-kos">,</span>
             _ <span class="pl-c1">=&gt;</span> <span class="pl-c1">null</span>
         <span class="pl-kos">}</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
 <h4>1.2 使用示例</h4>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">string</span> <span class="pl-s1">content</span> <span class="pl-c1">=</span> VoiceNoLedContentMap<span class="pl-kos">.</span><span class="pl-en">GetLedContent</span><span class="pl-kos">(</span>VoiceNo<span class="pl-kos">.</span>请前往指定车位<span class="pl-kos">)</span><span class="pl-kos">;</span>
-Console<span class="pl-kos">.</span>WriteLine<span class="pl-kos">(</span>content<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: {0}@请前往{1}</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">string</span> <span class="pl-s1">content</span> <span class="pl-c1">=</span> <span class="pl-s1">VoiceNoLedContentMap</span><span class="pl-kos">.</span><span class="pl-en">GetLedContent</span><span class="pl-kos">(</span><span class="pl-s1">VoiceNo</span><span class="pl-kos">.</span><span class="pl-s1">请前往指定车位</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">content</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: {0}@请前往{1}</span></pre></div>
 <h3>2. <strong>两种方法的比较</strong></h3>
 <h4>2.1 <strong>反射方法</strong></h4>
 <p>优点：</p>

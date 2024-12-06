@@ -151,8 +151,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>如果转换失败，会抛出 <code class="notranslate">InvalidCastException</code>。</li>
 <li>适用于已知类型安全的转换。</li>
 </ul>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-smi">string</span> <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">)</span>obj<span class="pl-kos">;</span> <span class="pl-c">// 强制转换，安全</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s">"Hello"</span><span class="pl-kos">;</span>
+<span class="pl-smi">string</span> <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">)</span><span class="pl-s1">obj</span><span class="pl-kos">;</span> <span class="pl-c">// 强制转换，安全</span></pre></div>
 </li>
 </ul>
 <h3><code class="notranslate">is</code> 操作符</h3>
@@ -165,11 +165,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>在 C# 7.0 及之后的版本中，可以直接在条件语句中声明转换变量。</li>
 </ul>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-k">if</span> <span class="pl-kos">(</span>obj <span class="pl-k">is</span> <span class="pl-smi">string</span> str<span class="pl-kos">)</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s">"Hello"</span><span class="pl-kos">;</span>
+<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">obj</span> <span class="pl-k">is</span> <span class="pl-smi">string</span> <span class="pl-s1">str</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
     <span class="pl-c">// str 在这里被视为 string 类型</span>
-    Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>str<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: Hello</span>
+    <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">str</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: Hello</span>
 <span class="pl-kos">}</span></pre></div>
 </li>
 </ul>
@@ -183,11 +183,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>适用于可能为空的转换，避免了异常抛出。</li>
 </ul>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Hello<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-smi">string</span> <span class="pl-s1">str</span> <span class="pl-c1">=</span> obj <span class="pl-k">as</span> <span class="pl-smi">string</span><span class="pl-kos">;</span> <span class="pl-c">// 如果转换失败，str 会是 null</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">object</span> <span class="pl-s1">obj</span> <span class="pl-c1">=</span> <span class="pl-s">"Hello"</span><span class="pl-kos">;</span>
+<span class="pl-smi">string</span> <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-s1">obj</span> <span class="pl-k">as</span> <span class="pl-smi">string</span><span class="pl-kos">;</span> <span class="pl-c">// 如果转换失败，str 会是 null</span>
 <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">str</span> <span class="pl-c1">!=</span> <span class="pl-c1">null</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>str<span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: Hello</span>
+    <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">str</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: Hello</span>
 <span class="pl-kos">}</span></pre></div>
 </li>
 </ul>
@@ -208,12 +208,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 <li>
 <p><strong>特点</strong>：无论对象的类型如何，只有在两个引用相同（即它们指向同一内存地址）时返回 <code class="notranslate">true</code>，否则返回 <code class="notranslate">false</code>。</p>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">var</span> <span class="pl-s1">obj1</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-smi">var</span> <span class="pl-s1">obj2</span> <span class="pl-c1">=</span> obj1<span class="pl-kos">;</span>
-<span class="pl-smi">var</span> <span class="pl-s1">obj3</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">obj1</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">var</span> <span class="pl-s1">obj2</span> <span class="pl-c1">=</span> <span class="pl-s1">obj1</span><span class="pl-kos">;</span>
+<span class="pl-k">var</span> <span class="pl-s1">obj3</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>ReferenceEquals<span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj2<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: true</span>
-Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>ReferenceEquals<span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj3<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: false</span></pre></div>
+<span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">ReferenceEquals</span><span class="pl-kos">(</span><span class="pl-s1">obj1</span><span class="pl-kos">,</span> <span class="pl-s1">obj2</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: true</span>
+<span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">ReferenceEquals</span><span class="pl-kos">(</span><span class="pl-s1">obj1</span><span class="pl-kos">,</span> <span class="pl-s1">obj3</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: false</span></pre></div>
 </li>
 </ul>
 <h4>2. <code class="notranslate">Equals(object left, object right)</code></h4>
@@ -223,8 +223,8 @@ Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span cl
 </li>
 <li>
 <p><strong>特点</strong>：默认情况下，它调用 <code class="notranslate">Object.Equals</code> 方法，比较引用。如果需要，可以在派生类中重写此方法以实现自定义的比较逻辑。</p>
-<div class="highlight highlight-source-cs"><pre class="notranslate">Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">.</span><span class="pl-en">Equals</span><span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj2<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: true</span>
-Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">.</span><span class="pl-en">Equals</span><span class="pl-kos">(</span>obj1<span class="pl-kos">,</span> obj3<span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: false</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">.</span><span class="pl-en">Equals</span><span class="pl-kos">(</span><span class="pl-s1">obj1</span><span class="pl-kos">,</span> <span class="pl-s1">obj2</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: true</span>
+<span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">.</span><span class="pl-en">Equals</span><span class="pl-kos">(</span><span class="pl-s1">obj1</span><span class="pl-kos">,</span> <span class="pl-s1">obj3</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 输出: false</span></pre></div>
 </li>
 </ul>
 <h4>3. <code class="notranslate">public virtual bool Equals(object right)</code></h4>
@@ -240,8 +240,8 @@ Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span cl
     
     <span class="pl-k">public</span> <span class="pl-k">override</span> <span class="pl-smi">bool</span> <span class="pl-en">Equals</span><span class="pl-kos">(</span><span class="pl-smi">object</span> <span class="pl-s1">obj</span><span class="pl-kos">)</span>
     <span class="pl-kos">{</span>
-        <span class="pl-k">if</span> <span class="pl-kos">(</span>obj <span class="pl-k">is</span> MyClass other<span class="pl-kos">)</span>
-            <span class="pl-k">return</span> <span class="pl-k">this</span><span class="pl-kos">.</span>Value <span class="pl-c1">==</span> other<span class="pl-kos">.</span>Value<span class="pl-kos">;</span>
+        <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">obj</span> <span class="pl-k">is</span> <span class="pl-smi">MyClass</span> <span class="pl-s1">other</span><span class="pl-kos">)</span>
+            <span class="pl-k">return</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-s1">Value</span> <span class="pl-c1">==</span> <span class="pl-s1">other</span><span class="pl-kos">.</span><span class="pl-s1">Value</span><span class="pl-kos">;</span>
         <span class="pl-k">return</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
     <span class="pl-kos">}</span>
 <span class="pl-kos">}</span></pre></div>
@@ -256,9 +256,9 @@ Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span cl
 <p><strong>特点</strong>：通常需要与 <code class="notranslate">Equals</code> 方法一起实现，以确保在使用 <code class="notranslate">==</code> 和 <code class="notranslate">.Equals()</code> 进行比较时的一致性。自定义逻辑可以基于对象的属性。</p>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">bool</span> <span class="pl-en">operator</span> <span class="pl-c1">==</span><span class="pl-kos">(</span><span class="pl-smi">MyClass</span> <span class="pl-s1">left</span><span class="pl-kos">,</span> <span class="pl-smi">MyClass</span> <span class="pl-s1">right</span><span class="pl-kos">)</span>
 <span class="pl-kos">{</span>
-    <span class="pl-k">if</span> <span class="pl-kos">(</span>ReferenceEquals<span class="pl-kos">(</span>left<span class="pl-kos">,</span> right<span class="pl-kos">)</span><span class="pl-kos">)</span> <span class="pl-k">return</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>
-    <span class="pl-k">if</span> <span class="pl-kos">(</span>left <span class="pl-k">is</span> <span class="pl-c1">null</span> <span class="pl-c1">||</span> right <span class="pl-k">is</span> <span class="pl-c1">null</span><span class="pl-kos">)</span> <span class="pl-k">return</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
-    <span class="pl-k">return</span> left<span class="pl-kos">.</span>Value <span class="pl-c1">==</span> right<span class="pl-kos">.</span>Value<span class="pl-kos">;</span>
+    <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">ReferenceEquals</span><span class="pl-kos">(</span><span class="pl-s1">left</span><span class="pl-kos">,</span> <span class="pl-s1">right</span><span class="pl-kos">)</span><span class="pl-kos">)</span> <span class="pl-k">return</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>
+    <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">left</span> <span class="pl-k">is</span> <span class="pl-c1">null</span> <span class="pl-c1">||</span> <span class="pl-s1">right</span> <span class="pl-k">is</span> <span class="pl-c1">null</span><span class="pl-kos">)</span> <span class="pl-k">return</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
+    <span class="pl-k">return</span> <span class="pl-s1">left</span><span class="pl-kos">.</span><span class="pl-s1">Value</span> <span class="pl-c1">==</span> <span class="pl-s1">right</span><span class="pl-kos">.</span><span class="pl-s1">Value</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span></pre></div>
 </li>
 </ul>
@@ -269,9 +269,9 @@ Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span cl
 </li>
 <li>
 <p><strong>特点</strong>：如果没有自定义 <code class="notranslate">==</code> 操作符，默认行为与 <code class="notranslate">ReferenceEquals</code> 相同（比较引用）。使用 <code class="notranslate">==</code> 时会调用自定义实现（如果存在）。</p>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">MyClass</span> <span class="pl-s1">objA</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> MyClass <span class="pl-kos">{</span> <span class="pl-s1">Value</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
-<span class="pl-smi">MyClass</span> <span class="pl-s1">objB</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> MyClass <span class="pl-kos">{</span> <span class="pl-s1">Value</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
-Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">objA</span> <span class="pl-c1">==</span> <span class="pl-s1">objB</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 如果重写了 ==，则输出 true（根据自定义逻辑）</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">MyClass</span> <span class="pl-s1">objA</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">MyClass</span> <span class="pl-kos">{</span> <span class="pl-s1">Value</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
+<span class="pl-smi">MyClass</span> <span class="pl-s1">objB</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">MyClass</span> <span class="pl-kos">{</span> <span class="pl-s1">Value</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">;</span>
+<span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">objA</span> <span class="pl-c1">==</span> <span class="pl-s1">objB</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 如果重写了 ==，则输出 true（根据自定义逻辑）</span></pre></div>
 </li>
 </ul>
 <h3>总结</h3>
@@ -323,9 +323,9 @@ Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span cl
 <span class="pl-kos">}</span></pre></div>
 <p>在这个例子中，<code class="notranslate">height</code> 参数是可选的，如果调用时只提供 <code class="notranslate">width</code>，则会计算正方形的面积。</p>
 <h3>调用方法</h3>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">var</span> <span class="pl-s1">calculator</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> AreaCalculator<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-smi">double</span> <span class="pl-s1">squareArea</span> <span class="pl-c1">=</span> calculator<span class="pl-kos">.</span><span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 计算正方形面积，结果是 25</span>
-<span class="pl-smi">double</span> <span class="pl-s1">rectangleArea</span> <span class="pl-c1">=</span> calculator<span class="pl-kos">.</span><span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">10</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 计算矩形面积，结果是 50</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">calculator</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">AreaCalculator</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">double</span> <span class="pl-s1">squareArea</span> <span class="pl-c1">=</span> <span class="pl-s1">calculator</span><span class="pl-kos">.</span><span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 计算正方形面积，结果是 25</span>
+<span class="pl-smi">double</span> <span class="pl-s1">rectangleArea</span> <span class="pl-c1">=</span> <span class="pl-s1">calculator</span><span class="pl-kos">.</span><span class="pl-en">CalculateArea</span><span class="pl-kos">(</span><span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">10</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 计算矩形面积，结果是 50</span></pre></div>
 <h3>优点</h3>
 <ol>
 <li><strong>减少代码重复</strong>：使用可选参数减少了多个方法的重复定义，简化了代码。</li>

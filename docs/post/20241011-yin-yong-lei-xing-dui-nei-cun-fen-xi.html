@@ -89,7 +89,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">var</span> <span class="pl-s1">record</span> <span class="pl-c1">=</span> context<span class="pl-kos">.</span>ParkingOrder <span class="pl-c1">=</span> <span class="pl-k">new</span> ParkingOrdersEntity<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<div class="markdown-body" id="postBody"><div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">var</span> <span class="pl-s1">record</span> <span class="pl-c1">=</span> <span class="pl-s1">context</span><span class="pl-kos">.</span><span class="pl-s1">ParkingOrder</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">ParkingOrdersEntity</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <p>赋值操作是从右向左进行的，所以最内层的 new ParkingOrdersEntity() 先创建对象。<br>
 然后，这个对象被赋值给 context.ParkingOrder。<br>
 最后，将 context.ParkingOrder 的值赋给 record。<br>

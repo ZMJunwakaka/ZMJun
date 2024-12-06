@@ -148,24 +148,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
      <span class="pl-k">try</span>
      <span class="pl-kos">{</span>
 
-         <span class="pl-smi">IRoadGateService</span> <span class="pl-s1">service</span> <span class="pl-c1">=</span> HSFService<span class="pl-kos">.</span><span class="pl-smi">Proxy</span><span class="pl-c1">&lt;</span><span class="pl-smi">IRoadGateService</span><span class="pl-c1">&gt;</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-         <span class="pl-smi">var</span> <span class="pl-s1">result</span> <span class="pl-c1">=</span> service<span class="pl-kos">.</span><span class="pl-en">UploadAuthenticationResult</span><span class="pl-kos">(</span><span class="pl-k">new</span> UploadAuthenticationResultParams
+         <span class="pl-smi">IRoadGateService</span> <span class="pl-s1">service</span> <span class="pl-c1">=</span> <span class="pl-s1">HSFService</span><span class="pl-kos">.</span><span class="pl-smi">Proxy</span><span class="pl-c1">&lt;</span><span class="pl-smi">IRoadGateService</span><span class="pl-c1">&gt;</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+         <span class="pl-k">var</span> <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">service</span><span class="pl-kos">.</span><span class="pl-en">UploadAuthenticationResult</span><span class="pl-kos">(</span><span class="pl-k">new</span> <span class="pl-smi">UploadAuthenticationResultParams</span>
          <span class="pl-kos">{</span>
-             <span class="pl-s1">CPS</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>CPS<span class="pl-kos">,</span>
-             <span class="pl-s1">DeviceID</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>DeviceID<span class="pl-kos">,</span>
-             <span class="pl-s1">FailReason</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>FailReason<span class="pl-kos">,</span>
-             <span class="pl-s1">IsAuthenticationResult</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>IsAuthenticationResult<span class="pl-kos">,</span>
-             <span class="pl-s1">MsgID</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>MsgID<span class="pl-kos">,</span>
-             <span class="pl-s1">OrderID</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>OrderID<span class="pl-kos">,</span>
-             <span class="pl-s1">PlateNum</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>PlateNum<span class="pl-kos">,</span>
-             <span class="pl-s1">PSR</span> <span class="pl-c1">=</span> param<span class="pl-kos">.</span>PSR
+             <span class="pl-s1">CPS</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">CPS</span><span class="pl-kos">,</span>
+             <span class="pl-s1">DeviceID</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">DeviceID</span><span class="pl-kos">,</span>
+             <span class="pl-s1">FailReason</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">FailReason</span><span class="pl-kos">,</span>
+             <span class="pl-s1">IsAuthenticationResult</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">IsAuthenticationResult</span><span class="pl-kos">,</span>
+             <span class="pl-s1">MsgID</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">MsgID</span><span class="pl-kos">,</span>
+             <span class="pl-s1">OrderID</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">OrderID</span><span class="pl-kos">,</span>
+             <span class="pl-s1">PlateNum</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">PlateNum</span><span class="pl-kos">,</span>
+             <span class="pl-s1">PSR</span> <span class="pl-c1">=</span> <span class="pl-s1">param</span><span class="pl-kos">.</span><span class="pl-s1">PSR</span>
          <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-         <span class="pl-k">return</span> result<span class="pl-c1">?</span><span class="pl-kos">.</span>ResultState <span class="pl-c1">??</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
+         <span class="pl-k">return</span> <span class="pl-s1">result</span><span class="pl-c1">?</span><span class="pl-kos">.</span><span class="pl-s1">ResultState</span> <span class="pl-c1">??</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
      <span class="pl-kos">}</span>
      <span class="pl-k">catch</span> <span class="pl-kos">(</span><span class="pl-smi">Exception</span> <span class="pl-s1">e</span><span class="pl-kos">)</span>
      <span class="pl-kos">{</span>
-         PMSLogFactory<span class="pl-kos">.</span>GetLogger<span class="pl-kos">.</span><span class="pl-en">LogError</span><span class="pl-kos">(</span>e<span class="pl-kos">,</span> ErrorCodeConsts<span class="pl-kos">.</span>下发开闸指令异常<span class="pl-kos">,</span> Ext6Consts<span class="pl-kos">.</span>入口开闸申请处理业务<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>下发开闸鉴权结果接口<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+         <span class="pl-s1">PMSLogFactory</span><span class="pl-kos">.</span><span class="pl-s1">GetLogger</span><span class="pl-kos">.</span><span class="pl-en">LogError</span><span class="pl-kos">(</span><span class="pl-s1">e</span><span class="pl-kos">,</span> <span class="pl-s1">ErrorCodeConsts</span><span class="pl-kos">.</span><span class="pl-s1">下发开闸指令异常</span><span class="pl-kos">,</span> <span class="pl-s1">Ext6Consts</span><span class="pl-kos">.</span><span class="pl-s1">入口开闸申请处理业务</span><span class="pl-kos">,</span> <span class="pl-s">"下发开闸鉴权结果接口"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
      <span class="pl-kos">}</span>
 
      <span class="pl-k">return</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>

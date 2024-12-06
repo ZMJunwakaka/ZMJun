@@ -146,25 +146,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><h3>1.序列化成json串</h3>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> Newtonsoft<span class="pl-kos">.</span>Json<span class="pl-kos">;</span>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">using</span> <span class="pl-s1">Newtonsoft</span><span class="pl-kos">.</span><span class="pl-s1">Json</span><span class="pl-kos">;</span>
 <span class="pl-k">namespace</span> <span class="pl-v">ConsoleAppTest1011</span>
 <span class="pl-kos">{</span>
     <span class="pl-k">internal</span> <span class="pl-k">class</span> <span class="pl-smi">Program</span>
     <span class="pl-kos">{</span>
         <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">void</span> <span class="pl-en">Main</span><span class="pl-kos">(</span><span class="pl-smi">string</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">args</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
-            <span class="pl-smi">Dictionary</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">dictionary</span> <span class="pl-c1">=</span> ResponseMethod<span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>鲁B16F0H<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>dictionary<span class="pl-kos">.</span><span class="pl-en">ToArray</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">[</span><span class="pl-c1">0</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span> 
-            Console<span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span>dictionary<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>filter<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span> 
+            <span class="pl-smi">Dictionary</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">dictionary</span> <span class="pl-c1">=</span> <span class="pl-s1">ResponseMethod</span><span class="pl-kos">(</span><span class="pl-s">"鲁B16F0H"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">dictionary</span><span class="pl-kos">.</span><span class="pl-en">ToArray</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">[</span><span class="pl-c1">0</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span> 
+            <span class="pl-s1">Console</span><span class="pl-kos">.</span><span class="pl-en">WriteLine</span><span class="pl-kos">(</span><span class="pl-s1">dictionary</span><span class="pl-kos">[</span><span class="pl-s">"filter"</span><span class="pl-kos">]</span><span class="pl-kos">)</span><span class="pl-kos">;</span> 
         <span class="pl-kos">}</span>
 
         <span class="pl-k"><span class="pl-k">static</span></span> <span class="pl-smi">Dictionary</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-en">ResponseMethod</span><span class="pl-kos">(</span><span class="pl-smi">string</span> <span class="pl-s1">plateNo</span><span class="pl-kos">)</span>
         <span class="pl-kos">{</span>
             <span class="pl-smi">Dictionary</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span> <span class="pl-s1">SGparam</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-smi">Dictionary</span><span class="pl-c1">&lt;</span><span class="pl-smi">string</span><span class="pl-kos">,</span> <span class="pl-smi">string</span><span class="pl-c1">&gt;</span>
             <span class="pl-kos">{</span>
-                <span class="pl-kos">{</span> <span class="pl-s"><span class="pl-s">"</span>filter<span class="pl-s">"</span></span><span class="pl-kos">,</span>JsonConvert<span class="pl-kos">.</span><span class="pl-en">SerializeObject</span><span class="pl-kos">(</span>
+                <span class="pl-kos">{</span> <span class="pl-s">"filter"</span><span class="pl-kos">,</span><span class="pl-s1">JsonConvert</span><span class="pl-kos">.</span><span class="pl-en">SerializeObject</span><span class="pl-kos">(</span>
                     <span class="pl-k">new</span> <span class="pl-kos">{</span>
-                        PlateNo<span class="pl-c1">=</span>plateNo
+                        <span class="pl-s1">PlateNo</span><span class="pl-c1">=</span><span class="pl-s1">plateNo</span>
                     <span class="pl-kos">}</span>
                     <span class="pl-kos">)</span>
                 <span class="pl-kos">}</span>
