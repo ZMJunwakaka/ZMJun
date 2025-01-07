@@ -17,7 +17,14 @@
 由于mysql不支持sql99语法全连接，需要使用union/union all取并集、
 union比union all性能低（在后者基础上进行去重），开发中尽量使用union all:
 例如：使用上图中的1和5做union all而不是使用1和2做union
-3.group by。">
+3.聚合函数
+3.1AVG(数值型字段)、SUM(数字型字段)、MAX()、MIN()、
+COUNT()效率对比
+![Snipaste_2025-01-07_22-57-08](https://github.com/user-attachments/assets/58fc8568-8976-458c-8881-4779170e6477)
+
+
+3.2group by
+3.3having。">
 <meta property="og:title" content="20250105Mysql基础查缺补漏与常用注意事项">
 <meta property="og:description" content="1.内连接、左（外）连接、右（外）连接、全连接
 ![Snipaste_2025-01-05_09-02-51](https://github.com/user-attachments/assets/41f67232-362c-4198-ba5b-ef53f3e8fe7c)
@@ -26,7 +33,14 @@ union比union all性能低（在后者基础上进行去重），开发中尽量
 由于mysql不支持sql99语法全连接，需要使用union/union all取并集、
 union比union all性能低（在后者基础上进行去重），开发中尽量使用union all:
 例如：使用上图中的1和5做union all而不是使用1和2做union
-3.group by。">
+3.聚合函数
+3.1AVG(数值型字段)、SUM(数字型字段)、MAX()、MIN()、
+COUNT()效率对比
+![Snipaste_2025-01-07_22-57-08](https://github.com/user-attachments/assets/58fc8568-8976-458c-8881-4779170e6477)
+
+
+3.2group by
+3.3having。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20250105Mysql-ji-chu-cha-que-bu-lou-yu-chang-yong-zhu-yi-shi-xiang.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/80440497?v=4">
@@ -93,7 +107,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 由于mysql不支持sql99语法全连接，需要使用union/union all取并集、<br>
 union比union all性能低（在后者基础上进行去重），开发中尽量使用union all:<br>
 例如：使用上图中的1和5做union all而不是使用1和2做union<br>
-3.group by</p></div>
+3.聚合函数<br>
+3.1AVG(数值型字段)、SUM(数字型字段)、MAX()、MIN()、<br>
+COUNT()效率对比<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/58fc8568-8976-458c-8881-4779170e6477"><img src="https://github.com/user-attachments/assets/58fc8568-8976-458c-8881-4779170e6477" alt="Snipaste_2025-01-07_22-57-08" style="max-width: 100%;"></a></p>
+<p>3.2group by<br>
+3.3having</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
