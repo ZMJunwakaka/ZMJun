@@ -100,9 +100,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>2、 <strong>可靠：</strong> 物联网网络常常面临高延迟或连接不稳定的情况。<code class="notranslate">MQTT支持多种QoS等级、会话感知和持久连接</code>，即使在困难的条件下也能保证消息的可靠传递，使其非常适合物联网应用。</p>
 <p>3、 <strong>安全通信：</strong> 安全对于物联网网络至关重要，因为其经常涉及敏感数据的传输。为确保数据在传输过程中的机密性，<code class="notranslate">MQTT提供传输层安全（TLS）和安全套接层（SSL）加密功能</code>。此外，MQTT 还通过用户名/密码凭证或客户端证书提供身份验证和授权机制，以保护网络及其资源的访问。</p>
 <p>4、 <strong>双向通信：</strong> MQTT的发布-订阅模式为设备之间提供了无缝的双向通信方式。<code class="notranslate">客户端既可以向主题发布消息，也可以订阅接收特定主题上的消息</code>，从而实现了物联网生态系统中的高效数据交换，而无需直接将设备耦合在一起。这种模式也简化了新设备的集成，同时保证了系统易于扩展。</p>
-<h3>注1：发布者和订阅者都是MQTT的一种客户端，它们与EMQX（代理软件broker）进行双向通讯。</h3>
+<h4>注1：发布者和订阅者都是MQTT的一种客户端，它们与EMQX（代理软件broker）进行双向通讯。</h4>
 <p>（发布者是客户端、与EMQX双向通信，订阅者是客户端、与EMQX双向通信）</p>
-<h3>注2：EMQX是代理软件、MQTTX是客户端工具</h3>
+<h4>注2：EMQX是代理软件、MQTTX是客户端工具</h4>
 <p>5、 <strong>语言支持：</strong> 物联网系统包含使用各种编程语言开发的设备和应用。<code class="notranslate">MQTT具有广泛的语言支持</code>，使其能够轻松与多个平台和技术进行集成，从而实现了物联网生态系统中的无缝通信和互操作性。常见编程语言的支持：PHP、Node.js、Python、Golang、Node.js、java、C#等。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
