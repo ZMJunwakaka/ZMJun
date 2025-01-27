@@ -103,7 +103,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h4>注1：发布者和订阅者都是MQTT的一种客户端，它们与EMQX（代理软件broker）进行双向通讯。</h4>
 <p>（发布者是客户端、与EMQX双向通信，订阅者是客户端、与EMQX双向通信）</p>
 <h4>注2：EMQX是代理软件、MQTTX是客户端工具</h4>
-<p>5、 <strong>语言支持：</strong> 物联网系统包含使用各种编程语言开发的设备和应用。<code class="notranslate">MQTT具有广泛的语言支持</code>，使其能够轻松与多个平台和技术进行集成，从而实现了物联网生态系统中的无缝通信和互操作性。常见编程语言的支持：PHP、Node.js、Python、Golang、Node.js、java、C#等。</p></div>
+<p>5、 <strong>语言支持：</strong> 物联网系统包含使用各种编程语言开发的设备和应用。<code class="notranslate">MQTT具有广泛的语言支持</code>，使其能够轻松与多个平台和技术进行集成，从而实现了物联网生态系统中的无缝通信和互操作性。常见编程语言的支持：PHP、Node.js、Python、Golang、Node.js、java、C#等。</p>
+<h1>二、代理服务器EMQX与客户端MQTTX</h1>
+<h2>1.EMQX与MQTTX安装</h2>
+<p>1、docker安装EMQX</p>
+<blockquote>
+<p>docker pull emqx<br>
+docker run -d --name emqx-test <br>
+-p 1883:1883 -p 8083:8083 <br>
+-p 8084:8084 -p 8883:8883 <br>
+-p 18083:18083 <br>
+-v emqx_data:/opt/emqx/data <br>
+-v emqx_log:/opt/emqx/log <br>
+-v emqx_etc:/opt/emqx/etc <br>
+emqx</p>
+</blockquote>
+<p>2、内网访问EMQX dashboard：192.168.xx.xx:18083(防火墙开启18083端口)<br>
+3、MQTTX desktop(桌面应用，推荐) <a href="https://mqttx.app/zh" rel="nofollow">https://mqttx.app/zh</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
