@@ -119,7 +119,21 @@ docker run -d --name emqx-test <br>
 emqx</p>
 </blockquote>
 <p>2、内网访问EMQX dashboard：192.168.xx.xx:18083(防火墙开启18083端口)<br>
-3、MQTTX desktop(桌面应用，推荐) <a href="https://mqttx.app/zh" rel="nofollow">https://mqttx.app/zh</a></p></div>
+3、MQTTX desktop(桌面应用，推荐) <a href="https://mqttx.app/zh" rel="nofollow">https://mqttx.app/zh</a></p>
+<h1>三、MQTT应用</h1>
+<p>1、QoS（Quality of Service，服务质量）是指消息传输的可靠性等级，MQTT定义了三个QoS等级来决定消息的交付方式：</p>
+<p>QoS 0 - 最多一次（At most once）：</p>
+<p>消息只会传递一次，可能丢失或重复传输。<br>
+最轻量、延迟最低，但传输不可靠。<br>
+适用于无需保证消息可靠性的场景，比如一些实时数据流。<br>
+QoS 1 - 至少一次（At least once）：</p>
+<p>消息至少会传递一次，可能会重复传输（可能会收到多次相同的消息）。<br>
+适用于要求消息不丢失，但可以接受重复的情况。<br>
+客户端确认已收到消息，Broker会继续重发直到接收到确认。<br>
+QoS 2 - 只有一次（Exactly once）：</p>
+<p>消息只会传递一次，并且不会丢失或重复。<br>
+这是最可靠的级别，但代价也是最高的，涉及更复杂的握手和控制流程。<br>
+适用于对消息传输严格要求的场景，如支付系统等。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
