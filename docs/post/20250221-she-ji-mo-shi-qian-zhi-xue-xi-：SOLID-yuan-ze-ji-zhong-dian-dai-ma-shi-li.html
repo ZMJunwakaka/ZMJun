@@ -512,7 +512,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>可测试性</strong>：在单元测试中，你可以通过模拟 <code class="notranslate">DataService</code> 接口来轻松测试 <code class="notranslate">OrderService</code>，而不需要依赖实际的数据库。</li>
 </ul>
 <h3>总结：</h3>
-<p>通过将 <code class="notranslate">OrderService</code> 类依赖于 <code class="notranslate">DataService</code> 接口，而不是具体的 <code class="notranslate">DatabaseService</code> 类，我们遵循了依赖倒置原则，使得系统更加灵活、可扩展且易于测试。</p></div>
+<p>通过将 <code class="notranslate">OrderService</code> 类依赖于 <code class="notranslate">DataService</code> 接口，而不是具体的 <code class="notranslate">DatabaseService</code> 类，我们遵循了依赖倒置原则，使得系统更加灵活、可扩展且易于测试。</p>
+<h1>问8：总之我明白了，这个依赖倒置原则是使用接口将两个类隔离开，避免两个类之间耦合度太高，使用接口的话，替换实现类就可以了，改动点很少？</h1>
+<p>是的，你的理解完全正确！<strong>依赖倒置原则（DIP）</strong> 通过引入接口来 <strong>隔离高层模块和低层模块</strong>，从而 <strong>降低耦合度</strong>。这样，当你需要替换或扩展实现类时，只需提供新的实现类，而不需要修改依赖它的高层模块（如 <code class="notranslate">OrderService</code>）。这种设计使得代码更加灵活、可维护，并且便于进行单元测试。</p>
+<p>总结来说：</p>
+<ul>
+<li><strong>高层模块</strong>（如 <code class="notranslate">OrderService</code>）不直接依赖 <strong>低层模块</strong>（如 <code class="notranslate">DatabaseService</code>），而是依赖于抽象的 <strong>接口</strong>。</li>
+<li>只要新实现类符合接口，<strong>可以轻松替换</strong>，而不需要修改高层模块的代码，改动点非常少。</li>
+<li>这种方式使得系统更容易 <strong>扩展</strong>，也能更好地进行 <strong>维护</strong> 和 <strong>测试</strong>。</li>
+</ul>
+<p>你的理解很到位，这正是 <strong>依赖倒置原则</strong> 提高代码质量和灵活性的核心思想。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
