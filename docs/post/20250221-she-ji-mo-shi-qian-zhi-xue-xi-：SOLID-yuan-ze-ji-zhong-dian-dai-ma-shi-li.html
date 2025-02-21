@@ -423,7 +423,96 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li><strong>接口隔离原则</strong> 强调了不应该让类依赖它们不需要的接口。在你之前的代码设计中，<code class="notranslate">Flyable</code> 和 <code class="notranslate">Eatable</code> 接口的设计完全遵循了这一原则，因为它们定义了非常单一且相关的行为。</li>
 <li>根据业务需求，接口的粒度可以灵活调整，既可以保持 <strong>灵活性</strong>，也可以确保 <strong>功能明确</strong>。</li>
-</ul></div>
+<li></li>
+</ul>
+<h1>问7 ：问1中的第五个依赖倒置原则，假设你有一个 OrderService 类，它直接依赖于 DatabaseService。为了遵循依赖倒置原则，OrderService 应该依赖于一个接口 DataService，而 DatabaseService 实现这个接口。这样，OrderService 就不再直接依赖于具体的 DatabaseService 类，而是依赖于接口，便于扩展和替换实现。写出来代码我看看</h1>
+<p>你提到的这个问题很好地展示了 <strong>依赖倒置原则（DIP）</strong> 的应用。依赖倒置原则的核心思想是，<strong>高层模块（如 <code class="notranslate">OrderService</code>）不应该依赖低层模块（如 <code class="notranslate">DatabaseService</code>）的具体实现，而应该依赖于抽象（如接口）</strong>。这样可以使得系统更加灵活，便于扩展和替换实现。</p>
+<h3>示例代码：</h3>
+<p>假设我们有一个 <code class="notranslate">OrderService</code> 类，它需要依赖数据库服务（<code class="notranslate">DatabaseService</code>）来存取订单数据。为了遵循依赖倒置原则，我们将 <code class="notranslate">DatabaseService</code> 抽象为一个接口 <code class="notranslate">DataService</code>，然后 <code class="notranslate">OrderService</code> 依赖于这个接口，而不是直接依赖具体的 <code class="notranslate">DatabaseService</code> 类。</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c">// 1. 定义一个接口 DataService，表示数据服务的抽象</span>
+<span class="pl-k">interface</span> <span class="pl-smi">DataService</span> {
+    <span class="pl-smi">void</span> <span class="pl-en">saveOrder</span>(<span class="pl-smi">Order</span> <span class="pl-s1">order</span>);
+    <span class="pl-smi">Order</span> <span class="pl-en">getOrder</span>(<span class="pl-smi">int</span> <span class="pl-s1">orderId</span>);
+}
+
+<span class="pl-c">// 2. 实现 DataService 接口的具体类，DatabaseService</span>
+<span class="pl-k">class</span> <span class="pl-smi">DatabaseService</span> <span class="pl-k">implements</span> <span class="pl-smi">DataService</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">saveOrder</span>(<span class="pl-smi">Order</span> <span class="pl-s1">order</span>) {
+        <span class="pl-c">// 实际保存订单到数据库的代码</span>
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Saving order to database..."</span>);
+    }
+
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Order</span> <span class="pl-en">getOrder</span>(<span class="pl-smi">int</span> <span class="pl-s1">orderId</span>) {
+        <span class="pl-c">// 实际从数据库获取订单的代码</span>
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Getting order from database..."</span>);
+        <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">Order</span>(<span class="pl-s1">orderId</span>);  <span class="pl-c">// 返回一个示例订单</span>
+    }
+}
+
+<span class="pl-c">// 3. 创建一个 Order 类，表示订单</span>
+<span class="pl-k">class</span> <span class="pl-smi">Order</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">int</span> <span class="pl-s1">orderId</span>;
+    <span class="pl-c">// 其他订单信息</span>
+
+    <span class="pl-k">public</span> <span class="pl-smi">Order</span>(<span class="pl-smi">int</span> <span class="pl-s1">orderId</span>) {
+        <span class="pl-smi">this</span>.<span class="pl-s1">orderId</span> = <span class="pl-s1">orderId</span>;
+    }
+
+    <span class="pl-c">// Getter 和 Setter</span>
+    <span class="pl-k">public</span> <span class="pl-smi">int</span> <span class="pl-en">getOrderId</span>() {
+        <span class="pl-k">return</span> <span class="pl-s1">orderId</span>;
+    }
+}
+
+<span class="pl-c">// 4. 高层模块 OrderService，依赖于抽象接口 DataService</span>
+<span class="pl-k">class</span> <span class="pl-smi">OrderService</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">DataService</span> <span class="pl-s1">dataService</span>;  <span class="pl-c">// 不再依赖具体实现，而是依赖接口</span>
+
+    <span class="pl-k">public</span> <span class="pl-smi">OrderService</span>(<span class="pl-smi">DataService</span> <span class="pl-s1">dataService</span>) {
+        <span class="pl-smi">this</span>.<span class="pl-s1">dataService</span> = <span class="pl-s1">dataService</span>;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">processOrder</span>(<span class="pl-smi">Order</span> <span class="pl-s1">order</span>) {
+        <span class="pl-c">// 使用 DataService 提供的接口来保存订单</span>
+        <span class="pl-s1">dataService</span>.<span class="pl-en">saveOrder</span>(<span class="pl-s1">order</span>);
+    }
+
+    <span class="pl-k">public</span> <span class="pl-smi">Order</span> <span class="pl-en">fetchOrder</span>(<span class="pl-smi">int</span> <span class="pl-s1">orderId</span>) {
+        <span class="pl-k">return</span> <span class="pl-s1">dataService</span>.<span class="pl-en">getOrder</span>(<span class="pl-s1">orderId</span>);
+    }
+}
+
+<span class="pl-c">// 5. 测试代码：依赖倒置原则的使用</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Main</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-c">// 可以灵活替换不同的 DataService 实现</span>
+        <span class="pl-smi">DataService</span> <span class="pl-s1">databaseService</span> = <span class="pl-k">new</span> <span class="pl-smi">DatabaseService</span>();
+        <span class="pl-smi">OrderService</span> <span class="pl-s1">orderService</span> = <span class="pl-k">new</span> <span class="pl-smi">OrderService</span>(<span class="pl-s1">databaseService</span>);
+
+        <span class="pl-c">// 使用 orderService 处理订单</span>
+        <span class="pl-smi">Order</span> <span class="pl-s1">order</span> = <span class="pl-k">new</span> <span class="pl-smi">Order</span>(<span class="pl-c1">1</span>);
+        <span class="pl-s1">orderService</span>.<span class="pl-en">processOrder</span>(<span class="pl-s1">order</span>);
+        <span class="pl-smi">Order</span> <span class="pl-s1">fetchedOrder</span> = <span class="pl-s1">orderService</span>.<span class="pl-en">fetchOrder</span>(<span class="pl-c1">1</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Fetched Order ID: "</span> + <span class="pl-s1">fetchedOrder</span>.<span class="pl-en">getOrderId</span>());
+    }
+}</pre></div>
+<h3>代码分析：</h3>
+<ol>
+<li><strong><code class="notranslate">DataService</code> 接口</strong>：定义了两个方法 <code class="notranslate">saveOrder</code> 和 <code class="notranslate">getOrder</code>，这两个方法用于保存和获取订单数据。</li>
+<li><strong><code class="notranslate">DatabaseService</code> 类</strong>：实现了 <code class="notranslate">DataService</code> 接口，具体实现了保存和获取订单的逻辑（比如与数据库交互的代码）。</li>
+<li><strong><code class="notranslate">OrderService</code> 类</strong>：不再直接依赖 <code class="notranslate">DatabaseService</code>，而是依赖于 <code class="notranslate">DataService</code> 接口。通过构造函数注入的方式，它可以接收任何实现了 <code class="notranslate">DataService</code> 接口的服务（如 <code class="notranslate">DatabaseService</code>）。</li>
+<li><strong>灵活性</strong>：如果将来需要替换 <code class="notranslate">DatabaseService</code>，只要新的服务类实现了 <code class="notranslate">DataService</code> 接口，<code class="notranslate">OrderService</code> 不需要做任何修改。例如，如果将来使用 <code class="notranslate">FileService</code> 或 <code class="notranslate">CloudService</code> 来代替 <code class="notranslate">DatabaseService</code>，只需要实现 <code class="notranslate">DataService</code> 接口即可。</li>
+</ol>
+<h3><strong>遵循依赖倒置原则的优势：</strong></h3>
+<ul>
+<li><strong>解耦</strong>：<code class="notranslate">OrderService</code> 不再依赖于具体的 <code class="notranslate">DatabaseService</code> 类，而是依赖于抽象的接口。这减少了类之间的耦合，使得系统更加灵活。</li>
+<li><strong>可扩展性</strong>：你可以轻松地替换或扩展 <code class="notranslate">DataService</code> 的实现，而不需要修改 <code class="notranslate">OrderService</code> 类。只要新的实现符合接口，<code class="notranslate">OrderService</code> 就可以使用。</li>
+<li><strong>可测试性</strong>：在单元测试中，你可以通过模拟 <code class="notranslate">DataService</code> 接口来轻松测试 <code class="notranslate">OrderService</code>，而不需要依赖实际的数据库。</li>
+</ul>
+<h3>总结：</h3>
+<p>通过将 <code class="notranslate">OrderService</code> 类依赖于 <code class="notranslate">DataService</code> 接口，而不是具体的 <code class="notranslate">DatabaseService</code> 类，我们遵循了依赖倒置原则，使得系统更加灵活、可扩展且易于测试。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
