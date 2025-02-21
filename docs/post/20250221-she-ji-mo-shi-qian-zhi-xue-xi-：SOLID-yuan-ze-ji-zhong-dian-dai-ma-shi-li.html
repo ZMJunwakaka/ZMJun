@@ -396,7 +396,34 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>如果接口方法过于简单，确实可能显得繁琐。<strong>可以考虑将多个相关的行为合并到一个接口中</strong>，简化设计。</li>
 <li>在设计时，确保接口是 <strong>合理的抽象</strong>，并且能有效地满足业务需求。避免无意义地拆分接口，但也不要过度合并，导致接口不清晰。</li>
 </ul>
-<p>接口的设计要根据 <strong>功能的关联性</strong> 和 <strong>扩展性</strong> 做出权衡，找到合适的粒度。</p></div>
+<p>接口的设计要根据 <strong>功能的关联性</strong> 和 <strong>扩展性</strong> 做出权衡，找到合适的粒度。</p>
+<h1>问6：也就是说上一个（问4）回答中的代码一个吃接口一个飞行接口很满足接口隔离原则 (Interface Segregation Principle, ISP)？</h1>
+<p>是的，你的理解是正确的！上一个回答中的设计，<strong><code class="notranslate">Flyable</code> 接口和 <code class="notranslate">Eatable</code> 接口</strong> 各自有一个单一的方法，完全符合 <strong>接口隔离原则（ISP）</strong>。</p>
+<h3><strong>接口隔离原则（ISP）</strong>：</h3>
+<p><strong>接口隔离原则</strong> 说的是，<strong>不应该强迫客户类依赖它们不使用的接口</strong>。每个接口应该只关注一组 <strong>相关的行为</strong>，避免一个接口包含过多不相关的方法，导致实现该接口的类需要实现一些它们不需要的方法。</p>
+<h3>在之前的例子中：</h3>
+<ul>
+<li><code class="notranslate">Flyable</code> 接口定义了与飞行相关的行为；</li>
+<li><code class="notranslate">Eatable</code> 接口定义了与吃饭相关的行为。</li>
+</ul>
+<p>每个接口只包含一个方法，且这两个接口分别关注 <strong>飞行</strong> 和 <strong>吃饭</strong>，它们之间没有不相关的行为。这使得实现这些接口的类（如 <code class="notranslate">Sparrow</code> 和 <code class="notranslate">Penguin</code>）只需要依赖它们所需要的功能，而不会被强制实现不相关的行为。</p>
+<h4>举个例子：</h4>
+<ul>
+<li><strong><code class="notranslate">Penguin</code> 类</strong> 只需要 <code class="notranslate">Eatable</code> 接口，而不需要实现 <code class="notranslate">Flyable</code> 接口，因为企鹅不能飞。</li>
+<li><strong><code class="notranslate">Sparrow</code> 类</strong> 需要同时实现 <code class="notranslate">Flyable</code> 和 <code class="notranslate">Eatable</code> 接口，因为麻雀既会飞又会吃。</li>
+</ul>
+<p>通过这种方式，你避免了让 <code class="notranslate">Penguin</code> 类实现 <code class="notranslate">Flyable</code> 接口（企鹅不能飞）而造成的设计不合理，也避免了 <code class="notranslate">Sparrow</code> 类实现不必要的方法。</p>
+<h3><strong>符合接口隔离原则的优势：</strong></h3>
+<ol>
+<li><strong>避免强迫实现不相关的方法</strong>：每个接口只包含相关的功能，类只需要实现自己真正需要的接口。</li>
+<li><strong>增强了类的灵活性</strong>：每个类只依赖于其需要的功能接口，避免了与不相关的行为产生紧密耦合。</li>
+<li><strong>代码更加清晰和易于理解</strong>：每个接口只聚焦于一组相关功能，遵循 <strong>单一职责原则（SRP）</strong>，接口职责更加明确。</li>
+</ol>
+<h3>总结：</h3>
+<ul>
+<li><strong>接口隔离原则</strong> 强调了不应该让类依赖它们不需要的接口。在你之前的代码设计中，<code class="notranslate">Flyable</code> 和 <code class="notranslate">Eatable</code> 接口的设计完全遵循了这一原则，因为它们定义了非常单一且相关的行为。</li>
+<li>根据业务需求，接口的粒度可以灵活调整，既可以保持 <strong>灵活性</strong>，也可以确保 <strong>功能明确</strong>。</li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
