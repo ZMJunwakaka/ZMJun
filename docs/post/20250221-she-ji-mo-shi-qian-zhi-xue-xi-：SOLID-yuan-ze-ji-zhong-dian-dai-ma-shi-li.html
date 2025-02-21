@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/80440497?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 问1：SOLID 原则?
+**SOLID 原则** 是面向对象设计和编程中的五个基本设计原则，它们有助于编写 **高质量、易维护、可扩展** 的软件系统。">
+<meta property="og:title" content="20250221设计模式前置学习：SOLID原则及重点代码示例">
+<meta property="og:description" content="# 问1：SOLID 原则?
+**SOLID 原则** 是面向对象设计和编程中的五个基本设计原则，它们有助于编写 **高质量、易维护、可扩展** 的软件系统。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ZMJunwakaka.github.io/ZMJun/post/20250221-she-ji-mo-shi-qian-zhi-xue-xi-%EF%BC%9ASOLID-yuan-ze-ji-zhong-dian-dai-ma-shi-li.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/80440497?v=4">
+<title>20250221设计模式前置学习：SOLID原则及重点代码示例</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">20250221设计模式前置学习：SOLID原则及重点代码示例</h1>
+<div class="title-right">
+    <a href="https://ZMJunwakaka.github.io/ZMJun" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/ZMJunwakaka/ZMJun/issues/23" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>问1：SOLID 原则?</h1>
+<p><strong>SOLID 原则</strong> 是面向对象设计和编程中的五个基本设计原则，它们有助于编写 <strong>高质量、易维护、可扩展</strong> 的软件系统。SOLID 是这五个原则首字母的缩写，具体包括：</p>
+<h3>1. <strong>单一职责原则 (Single Responsibility Principle, SRP)</strong></h3>
+<ul>
+<li><strong>定义</strong>：一个类应该只有一个责任（即只有一个原因去修改它）。换句话说，一个类应该只负责一项功能或一个职责。</li>
+<li><strong>解释</strong>：如果一个类承担多个责任，修改其中一个职责可能会影响到另一个责任，导致代码变得复杂且难以维护。遵循单一职责原则可以让类更专注，代码更清晰，且容易扩展。</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<ul>
+<li>如果一个类同时负责数据持久化和业务逻辑，那么当数据库实现需要变更时，你可能不得不修改业务逻辑代码。为了遵守单一职责原则，你应该将数据持久化和业务逻辑分离成不同的类。</li>
+</ul>
+<h3>2. <strong>开放封闭原则 (Open/Closed Principle, OCP)</strong></h3>
+<ul>
+<li><strong>定义</strong>：软件实体（类、模块、函数等）应该对扩展开放，对修改封闭。也就是说，应该能够在不修改已有代码的情况下扩展功能。</li>
+<li><strong>解释</strong>：当需求发生变化时，我们不应该修改已有的代码，而是通过扩展代码（如继承、接口实现等）来实现新的功能。这样可以减少代码的耦合度，避免破坏已有功能。</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<ul>
+<li>假设有一个类 <code class="notranslate">PaymentProcessor</code>，它处理多种支付方式。按照开放封闭原则，如果要添加一种新的支付方式，应该通过新增类（如 <code class="notranslate">PayPalPaymentProcessor</code>）来扩展，而不是修改原有的 <code class="notranslate">PaymentProcessor</code> 类。</li>
+</ul>
+<h3>3. <strong>里氏替换原则 (Liskov Substitution Principle, LSP)</strong></h3>
+<ul>
+<li><strong>定义</strong>：子类对象应该能够替换父类对象，并且程序的行为不变。</li>
+<li><strong>解释</strong>：子类应当能够扩展父类的功能，但不能改变父类原有的行为。如果子类改变了父类的行为，可能会导致程序出现错误或者不符合预期。也就是说，子类应当在父类的基础上保持行为的一致性。</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<ul>
+<li>如果你有一个基类 <code class="notranslate">Bird</code>，以及两个派生类 <code class="notranslate">Sparrow</code>（麻雀）和 <code class="notranslate">Penguin</code>（企鹅），那么 <code class="notranslate">Penguin</code> 作为 <code class="notranslate">Bird</code> 的子类应该能够保持鸟类的基本行为（例如能飞）。如果企鹅不能飞行，这就违反了里氏替换原则。</li>
+</ul>
+<h3>4. <strong>接口隔离原则 (Interface Segregation Principle, ISP)</strong></h3>
+<ul>
+<li><strong>定义</strong>：不应该强迫客户类依赖它们不使用的接口。一个接口应该专注于某一特定的功能，而不是包含过多的职责。</li>
+<li><strong>解释</strong>：如果一个接口包含了过多的功能，类可能需要实现一些它们不需要使用的功能，这会导致不必要的依赖和代码膨胀。为了遵循接口隔离原则，可以将大接口拆分成多个小接口，每个接口负责特定的功能。</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<ul>
+<li>假设有一个接口 <code class="notranslate">Worker</code>，它包括 <code class="notranslate">eat()</code> 和 <code class="notranslate">work()</code> 方法。对于某些类来说，<code class="notranslate">eat()</code> 方法可能不需要被实现。为了遵循接口隔离原则，应该将接口分成多个更细粒度的接口，比如 <code class="notranslate">Eater</code> 和 <code class="notranslate">Worker</code>，让类根据需求来实现相应的接口。</li>
+</ul>
+<h3>5. <strong>依赖倒置原则 (Dependency Inversion Principle, DIP)</strong></h3>
+<ul>
+<li><strong>定义</strong>：高层模块不应该依赖于低层模块，二者都应该依赖于抽象（接口）。抽象不应该依赖于细节，细节应该依赖于抽象。</li>
+<li><strong>解释</strong>：模块之间的依赖关系应该通过接口或抽象类来进行解耦，而不是直接依赖具体实现。这样可以减少模块之间的耦合，提高系统的灵活性和可维护性。</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<ul>
+<li>假设你有一个 <code class="notranslate">OrderService</code> 类，它直接依赖于 <code class="notranslate">DatabaseService</code>。为了遵循依赖倒置原则，<code class="notranslate">OrderService</code> 应该依赖于一个接口 <code class="notranslate">DataService</code>，而 <code class="notranslate">DatabaseService</code> 实现这个接口。这样，<code class="notranslate">OrderService</code> 就不再直接依赖于具体的 <code class="notranslate">DatabaseService</code> 类，而是依赖于接口，便于扩展和替换实现。</li>
+</ul>
+<hr>
+<h3>总结：</h3>
+<p><strong>SOLID 原则</strong> 旨在提高软件设计的可扩展性、可维护性、可复用性和灵活性。遵循这些原则可以帮助开发者编写结构良好、易于理解和扩展的代码，减少未来修改和扩展时的风险。对于初学者来说，逐步理解和应用这些原则将大大提高编程技巧，成为更成熟的开发者。</p>
+<hr>
+<h1>问2：开放封闭原则就是用PayPalPaymentProcessor继承PaymentProcessor呗</h1>
+<p>是的，但不全对，<strong>开放封闭原则（OCP）</strong> 的一个常见应用场景就是通过 <strong>继承</strong> 来扩展功能，而不是直接修改原有代码。你的理解是对的，下面我再详细解释一下这个场景。</p>
+<h3>例子解析：</h3>
+<p>假设你有一个 <code class="notranslate">PaymentProcessor</code> 类，它负责处理多种支付方式，初始版本可能只支持一种支付方式，比如信用卡支付：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">PaymentProcessor</span> {
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">processPayment</span>(<span class="pl-smi">String</span> <span class="pl-s1">paymentType</span>) {
+        <span class="pl-k">if</span> (<span class="pl-s1">paymentType</span>.<span class="pl-en">equals</span>(<span class="pl-s">"credit_card"</span>)) {
+            <span class="pl-c">// 处理信用卡支付</span>
+        }
+    }
+}</pre></div>
+<p>如果你后来需要支持 <strong>PayPal</strong> 支付方式，按照开放封闭原则，你应该尽量避免修改 <code class="notranslate">PaymentProcessor</code> 类的代码，而是通过扩展该类来实现新功能。你可以创建一个 <code class="notranslate">PayPalPaymentProcessor</code> 类，继承自 <code class="notranslate">PaymentProcessor</code> 类并扩展其功能：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">PayPalPaymentProcessor</span> <span class="pl-k">extends</span> <span class="pl-smi">PaymentProcessor</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">processPayment</span>(<span class="pl-smi">String</span> <span class="pl-s1">paymentType</span>) {
+        <span class="pl-k">if</span> (<span class="pl-s1">paymentType</span>.<span class="pl-en">equals</span>(<span class="pl-s">"paypal"</span>)) {
+            <span class="pl-c">// 处理 PayPal 支付</span>
+        } <span class="pl-k">else</span> {
+            <span class="pl-en">super</span>.<span class="pl-en">processPayment</span>(<span class="pl-s1">paymentType</span>);  <span class="pl-c">// 调用父类方法处理其他支付方式</span>
+        }
+    }
+}</pre></div>
+<p>这样做的好处是：</p>
+<ul>
+<li><strong>扩展性</strong>：你可以很容易地通过继承和重写来添加新的支付方式，而不需要修改原有的 <code class="notranslate">PaymentProcessor</code> 类。</li>
+<li><strong>封闭性</strong>：<code class="notranslate">PaymentProcessor</code> 类不需要改变。它对扩展是开放的，但是对修改是封闭的。也就是说，修改已经稳定并且经过验证的代码，往往会带来风险。而通过继承和扩展，你可以在不改变原有代码的情况下，添加新功能。</li>
+</ul>
+<h3>使用接口实现：</h3>
+<p>为了更加符合 <strong>开放封闭原则</strong>，你也可以使用接口来增强代码的灵活性。比如，将支付方式相关的行为提取到一个接口 <code class="notranslate">PaymentProcessor</code> 中，每种支付方式可以实现这个接口：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">interface</span> <span class="pl-smi">PaymentProcessor</span> {
+    <span class="pl-smi">void</span> <span class="pl-en">processPayment</span>();
+}
+
+<span class="pl-k">class</span> <span class="pl-smi">CreditCardPaymentProcessor</span> <span class="pl-k">implements</span> <span class="pl-smi">PaymentProcessor</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">processPayment</span>() {
+        <span class="pl-c">// 处理信用卡支付</span>
+    }
+}
+
+<span class="pl-k">class</span> <span class="pl-smi">PayPalPaymentProcessor</span> <span class="pl-k">implements</span> <span class="pl-smi">PaymentProcessor</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">processPayment</span>() {
+        <span class="pl-c">// 处理 PayPal 支付</span>
+    }
+}</pre></div>
+<p>这样，你就不需要通过继承来扩展 <code class="notranslate">PaymentProcessor</code>，而是通过接口实现了 <strong>支付方式的扩展性</strong>。不同的支付方式类遵循同一个接口，客户端代码可以灵活选择使用哪个支付方式。</p>
+<h3>总结：</h3>
+<ul>
+<li><strong>开放封闭原则</strong> 提倡通过 <strong>扩展</strong>（如继承或实现接口）来增加新功能，而不是修改现有的代码。通过这种方式，可以在不修改已验证和稳定的代码的情况下，保持代码的灵活性和扩展性。</li>
+<li>使用继承或接口是实现这一原则的常见方式，既可以保持 <strong>封闭性</strong>，又能增加 <strong>开放性</strong>。</li>
+</ul>
+<p>你的理解是正确的，采用继承方式是实现开放封闭原则的一种方法，但通常我们会倾向于使用接口或抽象类来实现更高层次的扩展。</p>
+<p>#问3：里氏替换原则意思是继承的子类尽量不或不能重写父类方法。保证父类方法功能不变，子类只是继承使用？</p>
+<p>你的理解接近了 <strong>里氏替换原则（LSP）</strong> 的核心思想，但还有一些需要补充的细节。里氏替换原则的核心是确保 <strong>子类可以替换父类使用，而不改变程序的行为</strong>。</p>
+<h3>里氏替换原则（LSP）解释：</h3>
+<p><strong>里氏替换原则</strong>（Liskov Substitution Principle）要求 <strong>子类对象可以替换父类对象</strong>，而不影响程序的正确性。也就是说，如果一个程序中使用了父类对象，那么它应该能够使用子类对象而不导致错误或不期望的行为变化。换句话说，<strong>子类应当能够完全遵循父类的行为契约</strong>，而不能破坏父类的预期行为。</p>
+<h3>关键要点：</h3>
+<ol>
+<li><strong>子类可以扩展父类的功能</strong>，但不能改变父类的行为。子类可以重写父类的方法，但重写后的方法应该保证父类方法的基本行为不会被破坏。</li>
+<li><strong>子类不能引入比父类更严格的限制</strong>，也不能引入不符合父类设计的行为。</li>
+<li>如果子类改变了父类的方法实现，必须保证新实现仍然符合父类方法的语义和契约。</li>
+</ol>
+<h3>举个例子：</h3>
+<p>假设有一个 <code class="notranslate">Bird</code> 类和两个子类：<code class="notranslate">Sparrow</code>（麻雀）和 <code class="notranslate">Penguin</code>（企鹅）。</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">Bird</span> {
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">fly</span>() {
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Bird is flying"</span>);
+    }
+}</pre></div>
+<p>我们可以假设 <code class="notranslate">Bird</code> 类表示所有的鸟类，并且它有一个 <code class="notranslate">fly</code> 方法，表示鸟类会飞。如果你在 <code class="notranslate">Sparrow</code> 类中继承了 <code class="notranslate">Bird</code> 并重写了 <code class="notranslate">fly()</code> 方法，这样是可以的，因为麻雀是会飞的：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">Sparrow</span> <span class="pl-k">extends</span> <span class="pl-smi">Bird</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">fly</span>() {
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Sparrow is flying"</span>);
+    }
+}</pre></div>
+<p>但问题出现在 <code class="notranslate">Penguin</code> 类，企鹅是不能飞的。如果你按照 <strong>里氏替换原则</strong>，<code class="notranslate">Penguin</code> 作为 <code class="notranslate">Bird</code> 的子类应该仍然能够替换 <code class="notranslate">Bird</code> 类，而不会导致行为不一致。如果我们强行让 <code class="notranslate">Penguin</code> 重写 <code class="notranslate">fly()</code> 方法，可能就会违反里氏替换原则，因为企鹅不能飞，<code class="notranslate">fly()</code> 方法就不再符合鸟类的行为契约。</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">Penguin</span> <span class="pl-k">extends</span> <span class="pl-smi">Bird</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">fly</span>() {
+        <span class="pl-c">// 企鹅不能飞，若这样实现就不符合 LSP</span>
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Penguin can't fly"</span>);
+    }
+}</pre></div>
+<p>在这种情况下，<strong>企鹅不能飞</strong>，如果你用 <code class="notranslate">Penguin</code> 替换 <code class="notranslate">Bird</code>，程序的行为就会和预期不符，这违背了 <strong>里氏替换原则</strong>。</p>
+<h3>如何遵守里氏替换原则？</h3>
+<ol>
+<li><strong>不要违反父类的行为约定</strong>：子类应当保留父类方法的行为。如果需要修改，可以考虑使用不同的方法来实现子类的特性，而不是重写父类的基本方法。</li>
+<li><strong>接口或抽象类的使用</strong>：可以通过将 <code class="notranslate">fly()</code> 方法抽象为接口，或者将不同类型的鸟放入不同的类层次结构中，来避免 <code class="notranslate">Penguin</code> 类破坏 <code class="notranslate">Bird</code> 类的行为契约。</li>
+</ol>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">interface</span> <span class="pl-smi">Flyable</span> {
+    <span class="pl-smi">void</span> <span class="pl-en">fly</span>();
+}
+
+<span class="pl-k">class</span> <span class="pl-smi">Bird</span> {
+    <span class="pl-c">// Bird 类可以不强制要求 fly() 方法</span>
+}
+
+<span class="pl-k">class</span> <span class="pl-smi">Sparrow</span> <span class="pl-k">extends</span> <span class="pl-smi">Bird</span> <span class="pl-k">implements</span> <span class="pl-smi">Flyable</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">fly</span>() {
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"Sparrow is flying"</span>);
+    }
+}
+
+<span class="pl-k">class</span> <span class="pl-smi">Penguin</span> <span class="pl-k">extends</span> <span class="pl-smi">Bird</span> {
+    <span class="pl-c">// Penguin 类不实现 Flyable，避免不符合逻辑的 fly 方法</span>
+}</pre></div>
+<p>这样，通过 <strong>接口分离</strong>，<code class="notranslate">Penguin</code> 类就不需要实现 <code class="notranslate">fly()</code> 方法，符合了里氏替换原则。</p>
+<h3>总结：</h3>
+<p><strong>里氏替换原则</strong> 关键是 <strong>子类替换父类时，程序的行为应保持一致</strong>。如果子类修改了父类的方法，实现了不符合父类预期的行为，或者缩小了父类的功能范围（例如 <code class="notranslate">fly()</code> 方法的语义），那就违反了这个原则。</p>
+<p>因此，<strong>里氏替换原则的核心并不是子类不能重写父类方法，而是子类在重写父类方法时要确保行为的一致性</strong>，即子类的行为应该能够符合父类的预期，并且不会引起程序的不一致或错误。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://ZMJunwakaka.github.io/ZMJun">郑明君のBlog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","ZMJunwakaka/ZMJun");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
